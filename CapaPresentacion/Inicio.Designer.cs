@@ -40,6 +40,7 @@
             menucompras = new FontAwesome.Sharp.IconMenuItem();
             submenuregistrarcompra = new FontAwesome.Sharp.IconMenuItem();
             submenuverdetallecompra = new FontAwesome.Sharp.IconMenuItem();
+            submenuordendecompra = new ToolStripMenuItem();
             menuclientes = new FontAwesome.Sharp.IconMenuItem();
             menuproveedores = new FontAwesome.Sharp.IconMenuItem();
             menureportes = new FontAwesome.Sharp.IconMenuItem();
@@ -155,7 +156,7 @@
             // 
             // menucompras
             // 
-            menucompras.DropDownItems.AddRange(new ToolStripItem[] { submenuregistrarcompra, submenuverdetallecompra });
+            menucompras.DropDownItems.AddRange(new ToolStripItem[] { submenuregistrarcompra, submenuverdetallecompra, submenuordendecompra });
             menucompras.IconChar = FontAwesome.Sharp.IconChar.DollyFlatbed;
             menucompras.IconColor = Color.Black;
             menucompras.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -172,7 +173,7 @@
             submenuregistrarcompra.IconColor = Color.Black;
             submenuregistrarcompra.IconFont = FontAwesome.Sharp.IconFont.Auto;
             submenuregistrarcompra.Name = "submenuregistrarcompra";
-            submenuregistrarcompra.Size = new Size(165, 26);
+            submenuregistrarcompra.Size = new Size(229, 30);
             submenuregistrarcompra.Text = "Registrar";
             submenuregistrarcompra.Click += submenuregistrarcompra_Click;
             // 
@@ -182,9 +183,16 @@
             submenuverdetallecompra.IconColor = Color.Black;
             submenuverdetallecompra.IconFont = FontAwesome.Sharp.IconFont.Auto;
             submenuverdetallecompra.Name = "submenuverdetallecompra";
-            submenuverdetallecompra.Size = new Size(165, 26);
+            submenuverdetallecompra.Size = new Size(229, 30);
             submenuverdetallecompra.Text = "Ver Detalle";
             submenuverdetallecompra.Click += submenuverdetallecompra_Click;
+            // 
+            // submenuordendecompra
+            // 
+            submenuordendecompra.Name = "submenuordendecompra";
+            submenuordendecompra.Size = new Size(229, 30);
+            submenuordendecompra.Text = "Ordenes de Compra";
+            submenuordendecompra.Click += submenuordendecompra_Click;
             // 
             // menuclientes
             // 
@@ -378,5 +386,6 @@
         private ToolStripMenuItem submenureportecompras;
         private ToolStripMenuItem submenureporteventas;
         private FontAwesome.Sharp.IconButton btnsalir;
+        private ToolStripMenuItem submenuordendecompra;
     }
 }

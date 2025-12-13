@@ -140,6 +140,11 @@ namespace CapaPresentacion
             mdAcercade md = new mdAcercade();
             md.ShowDialog();
         }
+        private void submenuordendecompra_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario(menucompras, new frmOrdenCompra(usuarioActual)); 
+        }
+
 
         private void btnsalir_Click(object sender, EventArgs e)
         {
@@ -148,5 +153,6 @@ namespace CapaPresentacion
                 this.Close();
             }
         }
+        
     }
 }
