@@ -51,24 +51,31 @@ namespace CapaPresentacion
         {
             string mensaje = string.Empty;
 
-            OpenFileDialog oOpenFileDialog = new OpenFileDialog();
-            oOpenFileDialog.FileName = "Files|*.jpg;*.jpeg;*.png";
-
-            if (oOpenFileDialog.ShowDialog() == DialogResult.OK)
+            using (OpenFileDialog oOpenFileDialog = new OpenFileDialog())
             {
-                byte[] byteimage = File.ReadAllBytes(oOpenFileDialog.FileName);
-                bool respuesta = new CN_Negocio().ActualizarLogo(byteimage, out mensaje);
+                oOpenFileDialog.Title = "Seleccionar logo";
+                oOpenFileDialog.Filter = "Imágenes (*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png|Todos los archivos (*.*)|*.*";
+                oOpenFileDialog.FilterIndex = 1;
+                oOpenFileDialog.Multiselect = false;
 
-                if (respuesta)
+                if (oOpenFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    piclogo.Image = ByteToImage(byteimage);
-                }
-                else
-                {
-                    MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    byte[] byteimage = File.ReadAllBytes(oOpenFileDialog.FileName);
+
+                    bool respuesta = new CN_Negocio().ActualizarLogo(byteimage, out mensaje);
+
+                    if (respuesta)
+                    {
+                        piclogo.Image = ByteToImage(byteimage);
+                    }
+                    else
+                    {
+                        MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
                 }
             }
         }
+
 
         private void btnguardar_Click(object sender, EventArgs e)
         {
