@@ -51,6 +51,11 @@
             btnAnularOC = new FontAwesome.Sharp.IconButton();
             btnEditarOC = new FontAwesome.Sharp.IconButton();
             btnRegresar = new FontAwesome.Sharp.IconButton();
+            btnbuscar = new FontAwesome.Sharp.IconButton();
+            btnlimpiarbuscador = new FontAwesome.Sharp.IconButton();
+            txtbusqueda = new TextBox();
+            cbobusqueda = new ComboBox();
+            label11 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvdata).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvdetalles).BeginInit();
             SuspendLayout();
@@ -272,11 +277,82 @@
             btnRegresar.UseVisualStyleBackColor = false;
             btnRegresar.Click += btnRegresar_Click;
             // 
+            // btnbuscar
+            // 
+            btnbuscar.BackColor = Color.White;
+            btnbuscar.Cursor = Cursors.Hand;
+            btnbuscar.FlatAppearance.BorderColor = Color.Black;
+            btnbuscar.FlatStyle = FlatStyle.Flat;
+            btnbuscar.ForeColor = Color.Black;
+            btnbuscar.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
+            btnbuscar.IconColor = Color.Black;
+            btnbuscar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnbuscar.IconSize = 16;
+            btnbuscar.Location = new Point(682, 24);
+            btnbuscar.Margin = new Padding(3, 4, 3, 4);
+            btnbuscar.Name = "btnbuscar";
+            btnbuscar.Size = new Size(50, 31);
+            btnbuscar.TabIndex = 58;
+            btnbuscar.UseVisualStyleBackColor = false;
+            // 
+            // btnlimpiarbuscador
+            // 
+            btnlimpiarbuscador.BackColor = Color.White;
+            btnlimpiarbuscador.Cursor = Cursors.Hand;
+            btnlimpiarbuscador.FlatAppearance.BorderColor = Color.Black;
+            btnlimpiarbuscador.FlatStyle = FlatStyle.Flat;
+            btnlimpiarbuscador.ForeColor = Color.Black;
+            btnlimpiarbuscador.IconChar = FontAwesome.Sharp.IconChar.Broom;
+            btnlimpiarbuscador.IconColor = Color.Black;
+            btnlimpiarbuscador.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnlimpiarbuscador.IconSize = 18;
+            btnlimpiarbuscador.Location = new Point(740, 24);
+            btnlimpiarbuscador.Margin = new Padding(3, 4, 3, 4);
+            btnlimpiarbuscador.Name = "btnlimpiarbuscador";
+            btnlimpiarbuscador.Size = new Size(43, 31);
+            btnlimpiarbuscador.TabIndex = 59;
+            btnlimpiarbuscador.TextAlign = ContentAlignment.MiddleRight;
+            btnlimpiarbuscador.UseVisualStyleBackColor = false;
+            // 
+            // txtbusqueda
+            // 
+            txtbusqueda.Location = new Point(469, 25);
+            txtbusqueda.Margin = new Padding(3, 4, 3, 4);
+            txtbusqueda.Name = "txtbusqueda";
+            txtbusqueda.Size = new Size(206, 27);
+            txtbusqueda.TabIndex = 57;
+            // 
+            // cbobusqueda
+            // 
+            cbobusqueda.BackColor = SystemColors.Control;
+            cbobusqueda.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbobusqueda.FormattingEnabled = true;
+            cbobusqueda.Location = new Point(316, 25);
+            cbobusqueda.Margin = new Padding(3, 4, 3, 4);
+            cbobusqueda.Name = "cbobusqueda";
+            cbobusqueda.Size = new Size(146, 28);
+            cbobusqueda.TabIndex = 56;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.BackColor = SystemColors.Control;
+            label11.Location = new Point(233, 32);
+            label11.Name = "label11";
+            label11.Size = new Size(82, 20);
+            label11.TabIndex = 55;
+            label11.Text = "Buscar por:";
+            // 
             // mdOrdenCompraPendiente
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1088, 652);
+            Controls.Add(btnbuscar);
+            Controls.Add(btnlimpiarbuscador);
+            Controls.Add(txtbusqueda);
+            Controls.Add(cbobusqueda);
+            Controls.Add(label11);
             Controls.Add(btnRegresar);
             Controls.Add(btnEditarOC);
             Controls.Add(btnAnularOC);
@@ -317,5 +393,10 @@
         private FontAwesome.Sharp.IconButton btnAnularOC;
         private FontAwesome.Sharp.IconButton btnEditarOC;
         private FontAwesome.Sharp.IconButton btnRegresar;
+        private FontAwesome.Sharp.IconButton btnbuscar;
+        private FontAwesome.Sharp.IconButton btnlimpiarbuscador;
+        private TextBox txtbusqueda;
+        private ComboBox cbobusqueda;
+        private Label label11;
     }
 }

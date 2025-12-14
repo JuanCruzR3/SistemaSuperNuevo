@@ -55,14 +55,14 @@
             // 
             // txtCantidadOrdenada
             // 
-            txtCantidadOrdenada.Location = new Point(21, 200);
+            txtCantidadOrdenada.Location = new Point(104, 208);
             txtCantidadOrdenada.Name = "txtCantidadOrdenada";
             txtCantidadOrdenada.Size = new Size(155, 27);
             txtCantidadOrdenada.TabIndex = 1;
             // 
             // txtPrecioEstimado
             // 
-            txtPrecioEstimado.Location = new Point(247, 200);
+            txtPrecioEstimado.Location = new Point(330, 208);
             txtPrecioEstimado.Name = "txtPrecioEstimado";
             txtPrecioEstimado.Size = new Size(224, 27);
             txtPrecioEstimado.TabIndex = 3;
@@ -71,7 +71,7 @@
             // 
             dgvDetalleOC.BackgroundColor = SystemColors.Control;
             dgvDetalleOC.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvDetalleOC.Location = new Point(12, 233);
+            dgvDetalleOC.Location = new Point(95, 260);
             dgvDetalleOC.Name = "dgvDetalleOC";
             dgvDetalleOC.RowHeadersWidth = 51;
             dgvDetalleOC.RowTemplate.Height = 29;
@@ -83,7 +83,7 @@
             btnAgregarProducto.IconChar = FontAwesome.Sharp.IconChar.Plus;
             btnAgregarProducto.IconColor = Color.LightGreen;
             btnAgregarProducto.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnAgregarProducto.Location = new Point(574, 99);
+            btnAgregarProducto.Location = new Point(657, 107);
             btnAgregarProducto.Name = "btnAgregarProducto";
             btnAgregarProducto.Size = new Size(137, 70);
             btnAgregarProducto.TabIndex = 5;
@@ -97,7 +97,7 @@
             btnRegistrarOrden.IconChar = FontAwesome.Sharp.IconChar.None;
             btnRegistrarOrden.IconColor = Color.Black;
             btnRegistrarOrden.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnRegistrarOrden.Location = new Point(1055, 498);
+            btnRegistrarOrden.Location = new Point(1198, 505);
             btnRegistrarOrden.Name = "btnRegistrarOrden";
             btnRegistrarOrden.Size = new Size(179, 65);
             btnRegistrarOrden.TabIndex = 6;
@@ -116,7 +116,7 @@
             btnbuscarproveedor.IconColor = Color.Black;
             btnbuscarproveedor.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnbuscarproveedor.IconSize = 16;
-            btnbuscarproveedor.Location = new Point(182, 48);
+            btnbuscarproveedor.Location = new Point(265, 56);
             btnbuscarproveedor.Margin = new Padding(3, 4, 3, 4);
             btnbuscarproveedor.Name = "btnbuscarproveedor";
             btnbuscarproveedor.Size = new Size(50, 30);
@@ -126,21 +126,21 @@
             // 
             // txtidproveedor
             // 
-            txtidproveedor.Location = new Point(104, 15);
+            txtidproveedor.Location = new Point(187, 23);
             txtidproveedor.Name = "txtidproveedor";
             txtidproveedor.Size = new Size(51, 27);
             txtidproveedor.TabIndex = 70;
             // 
             // txtdocproveedor
             // 
-            txtdocproveedor.Location = new Point(21, 48);
+            txtdocproveedor.Location = new Point(104, 56);
             txtdocproveedor.Name = "txtdocproveedor";
             txtdocproveedor.Size = new Size(155, 27);
             txtdocproveedor.TabIndex = 71;
             // 
             // txtnombreproveedor
             // 
-            txtnombreproveedor.Location = new Point(247, 51);
+            txtnombreproveedor.Location = new Point(330, 59);
             txtnombreproveedor.Name = "txtnombreproveedor";
             txtnombreproveedor.Size = new Size(224, 27);
             txtnombreproveedor.TabIndex = 72;
@@ -156,7 +156,7 @@
             btnbuscarproducto.IconColor = Color.Black;
             btnbuscarproducto.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnbuscarproducto.IconSize = 16;
-            btnbuscarproducto.Location = new Point(182, 126);
+            btnbuscarproducto.Location = new Point(265, 134);
             btnbuscarproducto.Margin = new Padding(3, 4, 3, 4);
             btnbuscarproducto.Name = "btnbuscarproducto";
             btnbuscarproducto.Size = new Size(50, 30);
@@ -166,28 +166,28 @@
             // 
             // txtidproducto
             // 
-            txtidproducto.Location = new Point(104, 99);
+            txtidproducto.Location = new Point(187, 107);
             txtidproducto.Name = "txtidproducto";
             txtidproducto.Size = new Size(51, 27);
             txtidproducto.TabIndex = 74;
             // 
             // txtcodproducto
             // 
-            txtcodproducto.Location = new Point(21, 129);
+            txtcodproducto.Location = new Point(104, 137);
             txtcodproducto.Name = "txtcodproducto";
             txtcodproducto.Size = new Size(155, 27);
             txtcodproducto.TabIndex = 75;
             // 
             // txtproducto
             // 
-            txtproducto.Location = new Point(247, 129);
+            txtproducto.Location = new Point(330, 137);
             txtproducto.Name = "txtproducto";
             txtproducto.Size = new Size(224, 27);
             txtproducto.TabIndex = 76;
             // 
             // txtTotalEstimado
             // 
-            txtTotalEstimado.Location = new Point(1055, 452);
+            txtTotalEstimado.Location = new Point(1198, 459);
             txtTotalEstimado.Name = "txtTotalEstimado";
             txtTotalEstimado.Size = new Size(179, 27);
             txtTotalEstimado.TabIndex = 77;
@@ -195,7 +195,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(18, 172);
+            label1.Location = new Point(101, 180);
             label1.Name = "label1";
             label1.Size = new Size(140, 20);
             label1.TabIndex = 78;
@@ -204,7 +204,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(21, 24);
+            label2.Location = new Point(104, 32);
             label2.Name = "label2";
             label2.Size = new Size(80, 20);
             label2.TabIndex = 79;
@@ -213,7 +213,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(29, 106);
+            label3.Location = new Point(112, 114);
             label3.Name = "label3";
             label3.Size = new Size(72, 20);
             label3.TabIndex = 80;
@@ -221,7 +221,7 @@
             // 
             // txtNumeroDocumento
             // 
-            txtNumeroDocumento.Location = new Point(1036, 24);
+            txtNumeroDocumento.Location = new Point(1222, 12);
             txtNumeroDocumento.Name = "txtNumeroDocumento";
             txtNumeroDocumento.Size = new Size(172, 27);
             txtNumeroDocumento.TabIndex = 2;
@@ -229,7 +229,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(889, 31);
+            label4.Location = new Point(1071, 15);
             label4.Name = "label4";
             label4.Size = new Size(130, 20);
             label4.TabIndex = 81;
@@ -238,7 +238,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(247, 177);
+            label5.Location = new Point(330, 185);
             label5.Name = "label5";
             label5.Size = new Size(53, 20);
             label5.TabIndex = 82;
@@ -247,7 +247,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(1055, 412);
+            label6.Location = new Point(1198, 419);
             label6.Name = "label6";
             label6.Size = new Size(115, 20);
             label6.TabIndex = 83;
@@ -258,7 +258,7 @@
             btnVerPendientes.IconChar = FontAwesome.Sharp.IconChar.None;
             btnVerPendientes.IconColor = Color.Black;
             btnVerPendientes.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnVerPendientes.Location = new Point(840, 154);
+            btnVerPendientes.Location = new Point(1198, 117);
             btnVerPendientes.Name = "btnVerPendientes";
             btnVerPendientes.Size = new Size(179, 66);
             btnVerPendientes.TabIndex = 84;
@@ -270,7 +270,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1267, 602);
+            ClientSize = new Size(1427, 642);
             Controls.Add(btnVerPendientes);
             Controls.Add(label6);
             Controls.Add(label5);

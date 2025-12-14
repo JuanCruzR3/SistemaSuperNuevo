@@ -1,7 +1,9 @@
 ﻿using CapaEntidad;
 using CapaNegocio;
+using CapaPresentacion.Utilidades; // ✅ IMPORTANTE para OpcionCombo
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace CapaPresentacion.Modales
@@ -32,12 +34,19 @@ namespace CapaPresentacion.Modales
             dgvdata.CellDoubleClick -= dgvdata_CellDoubleClick;
             dgvdata.CellDoubleClick += dgvdata_CellDoubleClick;
 
-            // ✅ Botones (si ya están en el diseñador, igual no se duplican)
+            // ✅ Botones
             btnEditarOC.Click -= btnEditarOC_Click;
             btnEditarOC.Click += btnEditarOC_Click;
 
             btnAnularOC.Click -= btnAnularOC_Click;
             btnAnularOC.Click += btnAnularOC_Click;
+
+            // ✅ Buscador (si existen en el diseñador)
+            btnbuscar.Click -= btnbuscar_Click;
+            btnbuscar.Click += btnbuscar_Click;
+
+            btnlimpiarbuscador.Click -= btnlimpiarbuscador_Click;
+            btnlimpiarbuscador.Click += btnlimpiarbuscador_Click;
 
             dgvdetalles.ReadOnly = true;
             dgvdetalles.AllowUserToAddRows = false;
@@ -78,15 +87,12 @@ namespace CapaPresentacion.Modales
                 if (dgvdata.Columns.Contains("DocumentoProveedor"))
                     dgvdata.Columns["DocumentoProveedor"].Visible = false;
 
+                // ✅ Inicializar combo de búsqueda (una vez que ya existen columnas)
+                InicializarBuscador();
+
                 if (dgvdata.Rows.Count > 0)
                 {
-                    dgvdata.ClearSelection();
-                    dgvdata.Rows[0].Selected = true;
-
-                    // ✅ asegurar CurrentCell para que SelectedRows/CurrentRow sea consistente
-                    dgvdata.CurrentCell = dgvdata.Rows[0].Cells[0];
-
-                    CargarDetalleOrdenDesdeFila(dgvdata.Rows[0]);
+                    SeleccionarPrimeraFilaVisible();
                 }
                 else
                 {
@@ -102,6 +108,94 @@ namespace CapaPresentacion.Modales
             }
         }
 
+        // =========================================================
+        // ✅ BUSCADOR (igual lógica que Producto, adaptado)
+        // =========================================================
+
+        private void InicializarBuscador()
+        {
+            if (cbobusqueda == null) return;
+
+            cbobusqueda.Items.Clear();
+
+            foreach (DataGridViewColumn columna in dgvdata.Columns)
+            {
+                // Si querés excluir columnas internas, dejalo así:
+                if (columna.Visible == true)
+                {
+                    cbobusqueda.Items.Add(new OpcionCombo()
+                    {
+                        Valor = columna.Name,
+                        Texto = columna.HeaderText
+                    });
+                }
+            }
+
+            cbobusqueda.DisplayMember = "Texto";
+            cbobusqueda.ValueMember = "Valor";
+
+            if (cbobusqueda.Items.Count > 0)
+                cbobusqueda.SelectedIndex = 0;
+        }
+
+        private void btnbuscar_Click(object sender, EventArgs e)
+        {
+            if (cbobusqueda.SelectedItem == null) return;
+
+            string columnafiltro = ((OpcionCombo)cbobusqueda.SelectedItem).Valor.ToString();
+            string texto = txtbusqueda.Text.Trim().ToUpper();
+
+            foreach (DataGridViewRow row in dgvdata.Rows)
+            {
+                if (row.IsNewRow) continue;
+
+                string valorCelda = row.Cells[columnafiltro].Value?.ToString().Trim().ToUpper() ?? "";
+                row.Visible = valorCelda.Contains(texto);
+            }
+
+            // ✅ evitar SelectedRows = 0 por filas ocultas
+            SeleccionarPrimeraFilaVisible();
+        }
+
+        private void btnlimpiarbuscador_Click(object sender, EventArgs e)
+        {
+            txtbusqueda.Text = "";
+
+            foreach (DataGridViewRow row in dgvdata.Rows)
+            {
+                if (row.IsNewRow) continue;
+                row.Visible = true;
+            }
+
+            SeleccionarPrimeraFilaVisible();
+            txtbusqueda.Focus();
+        }
+
+        private void SeleccionarPrimeraFilaVisible()
+        {
+            var firstVisible = dgvdata.Rows
+                .Cast<DataGridViewRow>()
+                .FirstOrDefault(r => !r.IsNewRow && r.Visible);
+
+            if (firstVisible != null)
+            {
+                dgvdata.ClearSelection();
+                firstVisible.Selected = true;
+
+                // ✅ asegurar CurrentCell para que CurrentRow/SelectedRows funcione
+                dgvdata.CurrentCell = firstVisible.Cells[0];
+
+                CargarDetalleOrdenDesdeFila(firstVisible);
+            }
+            else
+            {
+                dgvdata.ClearSelection();
+                LimpiarDetalle();
+            }
+        }
+
+        // =========================================================
+
         private void dgvdata_SelectionChanged(object sender, EventArgs e)
         {
             try
@@ -112,7 +206,10 @@ namespace CapaPresentacion.Modales
                     return;
                 }
 
-                CargarDetalleOrdenDesdeFila(dgvdata.SelectedRows[0]);
+                var row = dgvdata.SelectedRows[0];
+                if (row.Visible == false) return; // ✅ por si quedó selección rara al filtrar
+
+                CargarDetalleOrdenDesdeFila(row);
             }
             catch { }
         }
@@ -124,7 +221,12 @@ namespace CapaPresentacion.Modales
             try
             {
                 DataGridViewRow row = dgvdata.Rows[e.RowIndex];
+                if (!row.Visible) return;
+
+                dgvdata.ClearSelection();
                 row.Selected = true;
+                dgvdata.CurrentCell = row.Cells[0];
+
                 CargarDetalleOrdenDesdeFila(row);
             }
             catch { }
@@ -316,7 +418,6 @@ namespace CapaPresentacion.Modales
                 return;
             }
 
-            // ✅ YA NO SE USA Tag. Se usa el usuario del constructor.
             if (usuarioActual == null)
             {
                 MessageBox.Show("No se encontró el usuario actual (constructor).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -335,7 +436,7 @@ namespace CapaPresentacion.Modales
 
         private void btnRegresar_Click(object sender, EventArgs e)
         {
-            this.Close(); 
+            this.Close();
         }
     }
 }

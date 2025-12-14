@@ -91,6 +91,19 @@ namespace CapaPresentacion
 
         private void frmOrdenCompra_Load(object sender, EventArgs e)
         {
+            txtidproveedor.Visible = false;
+            txtidproducto.Visible = false;
+
+            // Proveedor (solo lectura)
+            txtidproveedor.ReadOnly = true;
+            txtdocproveedor.ReadOnly = true;
+            txtnombreproveedor.ReadOnly = true;
+
+            // Producto (solo lectura)
+            txtidproducto.ReadOnly = true;
+            txtcodproducto.ReadOnly = true;
+            txtproducto.ReadOnly = true;
+
             if (txtTotalEstimado != null) txtTotalEstimado.Text = "0.00";
             if (txtidproveedor != null) txtidproveedor.Text = "0";
             if (txtidproducto != null) txtidproducto.Text = "0";
@@ -143,6 +156,7 @@ namespace CapaPresentacion
             {
                 btnVerPendientes.Enabled = false;
             }
+
         }
 
         // ====== CONFIGURAR EDICIÓN EN GRILLA ======

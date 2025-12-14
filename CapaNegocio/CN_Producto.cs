@@ -80,5 +80,22 @@ namespace CapaNegocio
         {
             return objcd_Producto.Eliminar(obj, out Mensaje);
         }
+
+        public string GenerarCodigoProducto()
+        {
+            string codigo;
+            bool existe;
+
+            do
+            {
+                // Genera número de 6 dígitos
+                codigo = new Random().Next(100000, 999999).ToString();
+                existe = new CD_Producto().ExisteCodigo(codigo);
+            }
+            while (existe);
+
+            return codigo;
+        }
+
     }
 }

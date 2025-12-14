@@ -51,7 +51,7 @@
             label1.Dock = DockStyle.Left;
             label1.Location = new Point(0, 0);
             label1.Name = "label1";
-            label1.Size = new Size(206, 206);
+            label1.Size = new Size(252, 275);
             label1.TabIndex = 0;
             // 
             // label2
@@ -60,9 +60,9 @@
             label2.BackColor = Color.SteelBlue;
             label2.Font = new Font("Verdana", 12.75F, FontStyle.Italic, GraphicsUnit.Point);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(12, 141);
+            label2.Location = new Point(14, 188);
             label2.Name = "label2";
-            label2.Size = new Size(174, 20);
+            label2.Size = new Size(223, 26);
             label2.TabIndex = 1;
             label2.Text = "SUPER PRIMAVERA";
             // 
@@ -72,44 +72,47 @@
             iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.Store;
             iconPictureBox1.IconColor = Color.White;
             iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconPictureBox1.IconSize = 115;
-            iconPictureBox1.Location = new Point(46, 23);
+            iconPictureBox1.IconSize = 131;
+            iconPictureBox1.Location = new Point(53, 31);
+            iconPictureBox1.Margin = new Padding(3, 4, 3, 4);
             iconPictureBox1.Name = "iconPictureBox1";
-            iconPictureBox1.Size = new Size(115, 115);
+            iconPictureBox1.Size = new Size(131, 153);
             iconPictureBox1.TabIndex = 2;
             iconPictureBox1.TabStop = false;
             // 
             // txtdocumento
             // 
-            txtdocumento.Location = new Point(212, 48);
+            txtdocumento.Location = new Point(258, 66);
+            txtdocumento.Margin = new Padding(3, 4, 3, 4);
             txtdocumento.Name = "txtdocumento";
-            txtdocumento.Size = new Size(204, 23);
+            txtdocumento.Size = new Size(233, 27);
             txtdocumento.TabIndex = 3;
             txtdocumento.KeyPress += textBoxNumeros_KeyPress;
             // 
             // txtclave
             // 
-            txtclave.Location = new Point(212, 97);
+            txtclave.Location = new Point(258, 131);
+            txtclave.Margin = new Padding(3, 4, 3, 4);
             txtclave.Name = "txtclave";
             txtclave.PasswordChar = '*';
-            txtclave.Size = new Size(204, 23);
+            txtclave.Size = new Size(233, 27);
             txtclave.TabIndex = 4;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(212, 30);
+            label3.Location = new Point(258, 42);
             label3.Name = "label3";
-            label3.Size = new Size(93, 15);
+            label3.Size = new Size(116, 20);
             label3.TabIndex = 5;
             label3.Text = "Nro Documento";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(212, 79);
+            label4.Location = new Point(258, 107);
             label4.Name = "label4";
-            label4.Size = new Size(67, 15);
+            label4.Size = new Size(83, 20);
             label4.TabIndex = 6;
             label4.Text = "Contraseña";
             // 
@@ -124,9 +127,10 @@
             btningresar.IconColor = Color.White;
             btningresar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btningresar.IconSize = 21;
-            btningresar.Location = new Point(221, 150);
+            btningresar.Location = new Point(269, 202);
+            btningresar.Margin = new Padding(3, 4, 3, 4);
             btningresar.Name = "btningresar";
-            btningresar.Size = new Size(112, 41);
+            btningresar.Size = new Size(128, 55);
             btningresar.TabIndex = 7;
             btningresar.Text = "Ingresar";
             btningresar.TextAlign = ContentAlignment.MiddleRight;
@@ -145,9 +149,10 @@
             btncancelar.IconColor = Color.White;
             btncancelar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btncancelar.IconSize = 21;
-            btncancelar.Location = new Point(348, 150);
+            btncancelar.Location = new Point(414, 202);
+            btncancelar.Margin = new Padding(3, 4, 3, 4);
             btncancelar.Name = "btncancelar";
-            btncancelar.Size = new Size(118, 41);
+            btncancelar.Size = new Size(135, 55);
             btncancelar.TabIndex = 8;
             btncancelar.Text = "Cancelar";
             btncancelar.TextAlign = ContentAlignment.MiddleRight;
@@ -159,18 +164,19 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.Location = new Point(282, 9);
+            label5.Location = new Point(338, 14);
             label5.Name = "label5";
-            label5.Size = new Size(130, 21);
+            label5.Size = new Size(161, 28);
             label5.TabIndex = 9;
             label5.Text = "INICIAR SESIÓN";
             // 
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(434, 9);
+            pictureBox1.Location = new Point(512, 14);
+            pictureBox1.Margin = new Padding(3, 4, 3, 4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(67, 57);
+            pictureBox1.Size = new Size(77, 76);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 10;
             pictureBox1.TabStop = false;
@@ -178,9 +184,9 @@
             // LLrestablecerclave
             // 
             LLrestablecerclave.AutoSize = true;
-            LLrestablecerclave.Location = new Point(259, 132);
+            LLrestablecerclave.Location = new Point(312, 178);
             LLrestablecerclave.Name = "LLrestablecerclave";
-            LLrestablecerclave.Size = new Size(128, 15);
+            LLrestablecerclave.Size = new Size(161, 20);
             LLrestablecerclave.TabIndex = 11;
             LLrestablecerclave.TabStop = true;
             LLrestablecerclave.Text = "¿Olvidó su contraseña?";
@@ -188,10 +194,10 @@
             // 
             // Login
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(513, 206);
+            ClientSize = new Size(598, 275);
             Controls.Add(LLrestablecerclave);
             Controls.Add(pictureBox1);
             Controls.Add(label5);
@@ -205,6 +211,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";

@@ -170,5 +170,23 @@ namespace CapaDatos
             return respuesta;
         }
 
+        public bool ExisteCodigo(string codigo)
+        {
+            bool existe = false;
+
+            using (SqlConnection con = new SqlConnection(Conexion.cadena))
+            {
+                string query = "SELECT COUNT(*) FROM PRODUCTO WHERE Codigo = @Codigo";
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@Codigo", codigo);
+
+                con.Open();
+                existe = Convert.ToInt32(cmd.ExecuteScalar()) > 0;
+            }
+
+            return existe;
+        }
+
+
     }
 }

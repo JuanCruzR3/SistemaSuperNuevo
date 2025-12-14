@@ -21,6 +21,7 @@ namespace CapaPresentacion
         {
             InitializeComponent();
         }
+
         private void frmProducto_Load(object sender, EventArgs e)
         {
             cboestado.Items.Add(new OpcionCombo() { Valor = 1, Texto = "Activo" });
@@ -39,7 +40,6 @@ namespace CapaPresentacion
             cbocategoria.ValueMember = "Valor";
             cbocategoria.SelectedIndex = 0;
 
-
             foreach (DataGridViewColumn columna in dgvdata.Columns)
             {
                 if (columna.Visible == true && columna.Name != "btnseleccionar")
@@ -51,8 +51,10 @@ namespace CapaPresentacion
             cbobusqueda.ValueMember = "Valor";
             cbobusqueda.SelectedIndex = 0;
 
+            // ✅ Código autogenerado: no editable manualmente
+            txtcodigo.ReadOnly = true;
 
-            //Mostrar todos los productos 
+            // Mostrar todos los productos
             List<Producto> lista = new CN_Producto().Listar();
 
             foreach (Producto item in lista)
@@ -68,10 +70,13 @@ namespace CapaPresentacion
                     item.Stock,
                     item.PrecioCompra,
                     item.PrecioVenta,
-                    item.Estado == true ?1 : 0,
+                    item.Estado == true ? 1 : 0,
                     item.Estado == true ? "Activo" : "No Activo"
                  });
             }
+
+            // ✅ Dejar el formulario listo para cargar un producto nuevo (con código automático)
+            Limpiar();
         }
 
         private void textBoxLetras_KeyPress(object sender, KeyPressEventArgs e)
@@ -108,6 +113,13 @@ namespace CapaPresentacion
 
             if (obj.IdProducto == 0)
             {
+                // ✅ Si por algún motivo el código está vacío, lo regeneramos antes de guardar
+                if (string.IsNullOrWhiteSpace(obj.Codigo))
+                {
+                    obj.Codigo = new CN_Producto().GenerarCodigoProducto();
+                    txtcodigo.Text = obj.Codigo;
+                }
+
                 int idgenerado = new CN_Producto().Registrar(obj, out mensaje);
 
                 if (idgenerado != 0)
@@ -125,11 +137,10 @@ namespace CapaPresentacion
                         "0.00",
                         ((OpcionCombo)cboestado.SelectedItem).Valor.ToString(),
                         ((OpcionCombo)cboestado.SelectedItem).Texto.ToString(),
-            });
+                    });
 
                     Limpiar();
                 }
-
                 else
                 {
                     MessageBox.Show(mensaje);
@@ -164,13 +175,17 @@ namespace CapaPresentacion
         {
             txtindice.Text = "-1";
             txtid.Text = "0";
-            txtcodigo.Text = "";
+
+            // ✅ Generar código automático para nuevo producto
+            // (si está editando un producto existente, NO lo cambiamos)
+            txtcodigo.Text = new CN_Producto().GenerarCodigoProducto();
+
             txtnombre.Text = "";
             txtdescripcion.Text = "";
             cbocategoria.SelectedIndex = 0;
             cboestado.SelectedIndex = 0;
 
-            txtcodigo.Select();
+            txtnombre.Select();
         }
 
         private void dgvdata_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -190,7 +205,6 @@ namespace CapaPresentacion
                 e.Graphics.DrawImage(Properties.Resources.check30, new Rectangle(x, y, w, h));
                 e.Handled = true;
             }
-
         }
 
         private void dgvdata_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -226,11 +240,8 @@ namespace CapaPresentacion
                             break;
                         }
                     }
-
-
                 }
             }
-
         }
 
         private void btneliminar_Click(object sender, EventArgs e)
@@ -251,14 +262,12 @@ namespace CapaPresentacion
                     {
                         dgvdata.Rows.RemoveAt(Convert.ToInt32(txtindice.Text));
                         Limpiar();
-
                     }
                     else
                     {
                         MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
                 }
-
             }
         }
 
@@ -274,11 +283,9 @@ namespace CapaPresentacion
                         row.Visible = true;
                     else
                         row.Visible = false;
-
                 }
             }
         }
-
 
         private void btnlimpiarbuscador_Click(object sender, EventArgs e)
         {
@@ -330,6 +337,7 @@ namespace CapaPresentacion
                         });
                     }
                 }
+
                 SaveFileDialog savefile = new SaveFileDialog();
                 savefile.FileName = string.Format("ReporteProducto_{0}.xlsx", DateTime.Now.ToString("ddMMyyyyHHmmss"));
                 savefile.Filter = "Excel files |*.xlsx";
