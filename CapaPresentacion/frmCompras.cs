@@ -27,49 +27,21 @@ namespace CapaPresentacion
             _Usuario = oUsuario;
             InitializeComponent();
 
-            AplicarEstiloGrilla(dgvpendientesOC);
+
+            // ✅ Pendientes OC: solo lectura
+            AplicarEstiloGrilla(dgvpendientesOC, readOnly: true, allowEdit: false);
             dgvpendientesOC.ReadOnly = true;
 
-            AplicarEstiloGrilla(dgvdata);
-            dgvdata.ReadOnly = false; // porque ahí sí editás
-            dgvdata.EditMode = DataGridViewEditMode.EditOnKeystrokeOrF2; 
+            // ✅ Detalle compra: editable
+            AplicarEstiloGrilla(dgvdata, readOnly: false, allowEdit: true);
+            dgvdata.ReadOnly = false;
+            dgvdata.EditMode = DataGridViewEditMode.EditOnKeystrokeOrF2;
 
             dgvdata.Refresh();
             dgvdata.Invalidate();
 
             txtidordencompra = new TextBox() { Text = "0" };
         }
-
-        private void AplicarEstiloGrilla(DataGridView dgv)
-        {
-            dgv.SuspendLayout();
-
-            dgv.EnableHeadersVisualStyles = false;
-
-            dgv.DefaultCellStyle.BackColor = Color.White;
-            dgv.DefaultCellStyle.ForeColor = Color.Black;
-
-            // ✅ selección tipo “bloque”
-            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgv.MultiSelect = false;
-            dgv.ReadOnly = true; // para dgvpendientesOC (en dgvdata NO lo pongas si editás)
-            dgv.EditMode = DataGridViewEditMode.EditProgrammatically;
-
-            // ✅ highlight bien marcado
-            dgv.DefaultCellStyle.SelectionBackColor = SystemColors.Highlight;
-            dgv.DefaultCellStyle.SelectionForeColor = Color.White;
-
-            // (Opcional) más “clean”
-            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dgv.GridColor = Color.Gainsboro;
-
-            dgv.RowHeadersVisible = false;
-            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
-            dgv.ResumeLayout();
-        }
-
-
 
         private void frmCompras_Load(object sender, EventArgs e)
         {
@@ -88,7 +60,7 @@ namespace CapaPresentacion
             dgvdata.AllowUserToAddRows = false;
             dgvpendientesOC.AllowUserToAddRows = false;
 
-            // Enganchar eventos (evitar duplicarlos si el Load se ejecuta más de una vez)
+            // Enganchar eventos (evitar duplicarlos)
             dgvdata.CellEndEdit -= dgvdata_CellEndEdit;
             dgvdata.CellEndEdit += dgvdata_CellEndEdit;
 
@@ -100,17 +72,62 @@ namespace CapaPresentacion
             dgvpendientesOC.Rows.Clear();
             limpiarProducto();
 
-            // (Opcional) mejorar visual “invisible hasta tocar”
             dgvdata.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvdata.Refresh();
+
+            dgvpendientesOC.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvpendientesOC.MultiSelect = false;
+
+            dgvpendientesOC.CellClick -= dgvpendientesOC_CellClick;
+            dgvpendientesOC.CellClick += dgvpendientesOC_CellClick;
+
+            txtIndiceFila.Visible = false;
+            txtidDetalleOrdenCompra.Visible = false;
+            txtcantidadpendientemax.Visible = false;
+            txtcodproducto.Visible = false; 
         }
 
+        private void AplicarEstiloGrilla(DataGridView dgv, bool readOnly, bool allowEdit)
+        {
+            dgv.SuspendLayout();
+
+            dgv.EnableHeadersVisualStyles = false;
+            dgv.DefaultCellStyle.BackColor = Color.White;
+            dgv.DefaultCellStyle.ForeColor = Color.Black;
+
+            // ✅ selección tipo “bloque”
+            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgv.MultiSelect = false;
+
+            // ✅ readOnly configurable
+            dgv.ReadOnly = readOnly;
+
+            // ✅ edit mode configurable
+            dgv.EditMode = allowEdit ? DataGridViewEditMode.EditOnKeystrokeOrF2
+                                     : DataGridViewEditMode.EditProgrammatically;
+
+            // ✅ highlight bien marcado
+            dgv.DefaultCellStyle.SelectionBackColor = SystemColors.Highlight;
+            dgv.DefaultCellStyle.SelectionForeColor = Color.White;
+
+            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgv.GridColor = Color.Gainsboro;
+
+            dgv.RowHeadersVisible = false;
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            dgv.ResumeLayout();
+        }
+
+        
+
         // =========================================================
-        // 1) Seleccionar OC: cargar cabecera + cargar pendientes en dgvpendientesOC
+        // 1) Seleccionar OC: cargar cabecera + cargar pendientes
         // =========================================================
         private void btnSeleccionarOC_Click(object sender, EventArgs e)
         {
-            using (var modal = new mdOrdenCompraPendiente())
+            // ✅ IMPORTANTÍSIMO: pasar usuario actual al modal
+            using (var modal = new mdOrdenCompraPendiente(_Usuario))
             {
                 var result = modal.ShowDialog();
 
@@ -123,10 +140,9 @@ namespace CapaPresentacion
                     txtdocproveedor.Text = _OrdenCompra.NumeroDocumento; // Nro OC
                     txtnombreproveedor.Text = _OrdenCompra.oProveedor.RazonSocial;
 
-                    // Cargar pendientes en el dgv nuevo
+                    // ✅ Cargar pendientes
                     CargarPendientesOC(_OrdenCompra.IdOrdenCompra);
 
-                    // No tocar dgvdata: solo se llena con "Agregar"
                     limpiarProducto();
                 }
             }
@@ -164,6 +180,40 @@ namespace CapaPresentacion
                 dgvpendientesOC.Columns["IdProductoOC"].Visible = false;
 
             dgvpendientesOC.Refresh();
+
+            // ✅ Auto-seleccionar primera fila y disparar carga de datos
+            if (dgvpendientesOC.Rows.Count > 0)
+            {
+                dgvpendientesOC.ClearSelection();
+                dgvpendientesOC.Rows[0].Selected = true;
+
+                // Setear CurrentCell para que CurrentRow no sea null
+                if (dgvpendientesOC.Columns.Contains("ProductoOC"))
+                    dgvpendientesOC.CurrentCell = dgvpendientesOC.Rows[0].Cells["ProductoOC"];
+                else
+                    dgvpendientesOC.CurrentCell = dgvpendientesOC.Rows[0].Cells[0];
+
+                // Forzar el llenado de txt (por si SelectionChanged no disparó)
+                dgvpendientesOC_SelectionChanged(dgvpendientesOC, EventArgs.Empty);
+            }
+
+            dgvpendientesOC.ClearSelection();
+
+            if (dgvpendientesOC.Rows.Count > 0)
+            {
+                // ✅ seleccionar SI o SI la primera fila
+                dgvpendientesOC.Rows[0].Selected = true;
+
+                // ✅ fijar CurrentCell (clave para que CurrentRow no sea null)
+                dgvpendientesOC.CurrentCell = dgvpendientesOC.Rows[0].Cells["ProductoOC"];
+
+                // ✅ darle foco al grid para que se vea el bloque azul
+                dgvpendientesOC.Focus();
+
+                // ✅ forzar que se carguen los textbox aunque no se dispare SelectionChanged
+                dgvpendientesOC_SelectionChanged(dgvpendientesOC, EventArgs.Empty);
+            }
+
         }
 
         // =========================================================
@@ -171,10 +221,17 @@ namespace CapaPresentacion
         // =========================================================
         private void dgvpendientesOC_SelectionChanged(object sender, EventArgs e)
         {
-            if (dgvpendientesOC.CurrentRow == null) return;
             if (_OrdenCompra == null) return;
 
-            DataGridViewRow row = dgvpendientesOC.CurrentRow;
+            // ✅ Más robusto: preferir SelectedRows
+            DataGridViewRow row = null;
+
+            if (dgvpendientesOC.SelectedRows.Count > 0)
+                row = dgvpendientesOC.SelectedRows[0];
+            else
+                row = dgvpendientesOC.CurrentRow;
+
+            if (row == null) return;
 
             txtidDetalleOrdenCompra.Text = row.Cells["IdDetalleOrdenCompraOC"].Value?.ToString() ?? "0";
             txtidproducto.Text = row.Cells["IdProductoOC"].Value?.ToString() ?? "0";
@@ -208,9 +265,6 @@ namespace CapaPresentacion
                 return;
             }
 
-            // -----------------------------
-            // 1) TOMAR PRODUCTO DESDE OC (si hay)
-            // -----------------------------
             int idDetalleOC = 0;
             int idProducto = 0;
             string nombreProducto = "";
@@ -218,21 +272,25 @@ namespace CapaPresentacion
 
             if (_OrdenCompra != null)
             {
-                if (dgvpendientesOC.CurrentRow == null)
+                // ✅ Robustez: SelectedRows > CurrentRow
+                DataGridViewRow r = null;
+                if (dgvpendientesOC.SelectedRows.Count > 0)
+                    r = dgvpendientesOC.SelectedRows[0];
+                else
+                    r = dgvpendientesOC.CurrentRow;
+
+                if (r == null)
                 {
                     MessageBox.Show("Seleccioná un producto pendiente en la grilla de Pendientes OC.",
                         "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
 
-                var r = dgvpendientesOC.CurrentRow;
-
                 idDetalleOC = Convert.ToInt32(r.Cells["IdDetalleOrdenCompraOC"].Value);
                 idProducto = Convert.ToInt32(r.Cells["IdProductoOC"].Value);
                 nombreProducto = r.Cells["ProductoOC"].Value?.ToString() ?? "";
                 maxPendiente = Convert.ToInt32(r.Cells["CantidadPendienteOC"].Value);
 
-                // reflejar en textbox
                 txtidDetalleOrdenCompra.Text = idDetalleOC.ToString();
                 txtidproducto.Text = idProducto.ToString();
                 txtproducto.Text = nombreProducto;
@@ -240,7 +298,6 @@ namespace CapaPresentacion
             }
             else
             {
-                // Compra directa
                 if (Convert.ToInt32(txtidproducto.Text) == 0)
                 {
                     MessageBox.Show("Debe seleccionar un producto.", "Mensaje",
@@ -255,9 +312,7 @@ namespace CapaPresentacion
                 maxPendiente = 0;
             }
 
-            // -----------------------------
-            // 2) VALIDAR PRECIOS
-            // -----------------------------
+            // VALIDAR PRECIOS
             if (!decimal.TryParse(txtpreciocompra.Text, NumberStyles.Any, CultureInfo.CurrentCulture, out decimal precioCompra))
             {
                 MessageBox.Show("Precio Compra inválido.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -272,9 +327,7 @@ namespace CapaPresentacion
                 return;
             }
 
-            // -----------------------------
-            // 3) VALIDAR CANTIDAD
-            // -----------------------------
+            // VALIDAR CANTIDAD
             int cantidad = Convert.ToInt32(txtcantidad.Value);
             if (cantidad <= 0)
             {
@@ -289,9 +342,7 @@ namespace CapaPresentacion
                 return;
             }
 
-            // -----------------------------
-            // 4) SI YA EXISTE ESE ITEM (misma OC item) -> ACUMULAR
-            // -----------------------------
+            // SI YA EXISTE ESE ITEM -> ACUMULAR
             foreach (DataGridViewRow row in dgvdata.Rows)
             {
                 if (row.IsNewRow) continue;
@@ -328,9 +379,7 @@ namespace CapaPresentacion
                 }
             }
 
-            // -----------------------------
-            // 5) AGREGAR FILA NUEVA (asignando por Name)
-            // -----------------------------
+            // AGREGAR FILA NUEVA
             int idx = dgvdata.Rows.Add();
             var newRow = dgvdata.Rows[idx];
 
@@ -427,7 +476,6 @@ namespace CapaPresentacion
                 MessageBox.Show("Numero de compra generada:\n" + numerodocumento,
                     "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // refrescar pendientes si venía de OC (cuando SQL ya actualice recibidos)
                 if (_OrdenCompra != null)
                 {
                     CargarPendientesOC(_OrdenCompra.IdOrdenCompra);
@@ -481,10 +529,7 @@ namespace CapaPresentacion
             dgvdata.Refresh();
             calcularTotal();
         }
-
-        // =========================================================
         // Limpieza y total
-        // =========================================================
         private void limpiarProducto()
         {
             txtidproducto.Text = "0";
@@ -518,9 +563,7 @@ namespace CapaPresentacion
             txttotalapagar.Text = total.ToString("0.00");
         }
 
-        // =========================================================
         // Botones / limpieza general
-        // =========================================================
         private void btnbuscarproveedor_Click(object sender, EventArgs e)
         {
             btnSeleccionarOC_Click(sender, e);
@@ -560,9 +603,7 @@ namespace CapaPresentacion
             limpiarProducto();
         }
 
-        // =========================================================
         // Botón eliminar: pintura y click
-        // =========================================================
         private void dgvdata_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             if (e.RowIndex < 0) return;
@@ -571,14 +612,12 @@ namespace CapaPresentacion
             {
                 e.Paint(e.CellBounds, DataGridViewPaintParts.All);
 
-                // Si no tenés el recurso, comentá estas líneas:
                 var w = Properties.Resources.Delete25.Width;
                 var h = Properties.Resources.Delete25.Height;
                 var x = e.CellBounds.Left + (e.CellBounds.Width - w) / 2;
                 var y = e.CellBounds.Top + (e.CellBounds.Height - h) / 2;
 
                 e.Graphics.DrawImage(Properties.Resources.Delete25, new Rectangle(x, y, w, h));
-
                 e.Handled = true;
             }
         }
@@ -594,9 +633,6 @@ namespace CapaPresentacion
             }
         }
 
-        // =========================================================
-        // Doble click: modo edición (carga a textbox)
-        // =========================================================
         private void dgvdata_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             int iRow = e.RowIndex;
@@ -623,9 +659,6 @@ namespace CapaPresentacion
             txtcantidad.Select();
         }
 
-        // =========================================================
-        // Helpers: setear textbox sin romper si no existe
-        // =========================================================
         private void SetearTextoSeguro(string nombreControl, string valor)
         {
             var controles = this.Controls.Find(nombreControl, true);
@@ -633,9 +666,6 @@ namespace CapaPresentacion
                 tb.Text = valor;
         }
 
-        // =========================================================
-        // KeyPress helpers (compatibilidad designer)
-        // =========================================================
         private void textBoxNumeros_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -661,5 +691,17 @@ namespace CapaPresentacion
 
             e.Handled = true;
         }
+
+        private void dgvpendientesOC_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            dgvpendientesOC.CurrentCell = dgvpendientesOC.Rows[e.RowIndex].Cells["ProductoOC"];
+            dgvpendientesOC.Rows[e.RowIndex].Selected = true;
+            dgvpendientesOC.Focus();
+
+            dgvpendientesOC_SelectionChanged(sender, EventArgs.Empty);
+        }
+
     }
 }

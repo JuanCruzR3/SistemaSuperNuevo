@@ -46,6 +46,11 @@
             SubtotalEstimado = new DataGridViewTextBoxColumn();
             IdDetalleOrdenCompra = new DataGridViewTextBoxColumn();
             IdProducto = new DataGridViewTextBoxColumn();
+            label1 = new Label();
+            label2 = new Label();
+            btnAnularOC = new FontAwesome.Sharp.IconButton();
+            btnEditarOC = new FontAwesome.Sharp.IconButton();
+            btnRegresar = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)dgvdata).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvdetalles).BeginInit();
             SuspendLayout();
@@ -55,11 +60,11 @@
             dgvdata.BackgroundColor = SystemColors.Control;
             dgvdata.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvdata.Columns.AddRange(new DataGridViewColumn[] { NumeroDocumento, FechaRegistro, ProveedorRazonSocial, MontoTotalEstimado, IdOrdenCompra, IdProveedor, DocumentoProveedor });
-            dgvdata.Location = new Point(12, 33);
+            dgvdata.Location = new Point(12, 67);
             dgvdata.Name = "dgvdata";
             dgvdata.RowHeadersWidth = 51;
             dgvdata.RowTemplate.Height = 29;
-            dgvdata.Size = new Size(924, 295);
+            dgvdata.Size = new Size(924, 265);
             dgvdata.TabIndex = 0;
             // 
             // NumeroDocumento
@@ -126,7 +131,7 @@
             dgvdetalles.ReadOnly = true;
             dgvdetalles.RowHeadersWidth = 51;
             dgvdetalles.RowTemplate.Height = 29;
-            dgvdetalles.Size = new Size(924, 230);
+            dgvdetalles.Size = new Size(924, 282);
             dgvdetalles.TabIndex = 1;
             // 
             // CodigoProducto
@@ -203,11 +208,80 @@
             IdProducto.Visible = false;
             IdProducto.Width = 125;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(12, 28);
+            label1.Name = "label1";
+            label1.Size = new Size(145, 20);
+            label1.TabIndex = 2;
+            label1.Text = "Ordenes de Compra:";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(12, 335);
+            label2.Name = "label2";
+            label2.Size = new Size(82, 20);
+            label2.TabIndex = 3;
+            label2.Text = "Productos: ";
+            // 
+            // btnAnularOC
+            // 
+            btnAnularOC.ForeColor = Color.Red;
+            btnAnularOC.IconChar = FontAwesome.Sharp.IconChar.AlignJustify;
+            btnAnularOC.IconColor = Color.Red;
+            btnAnularOC.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnAnularOC.Location = new Point(963, 194);
+            btnAnularOC.Name = "btnAnularOC";
+            btnAnularOC.Size = new Size(113, 58);
+            btnAnularOC.TabIndex = 4;
+            btnAnularOC.Text = "Anular Orden";
+            btnAnularOC.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnAnularOC.UseVisualStyleBackColor = true;
+            btnAnularOC.Click += btnAnularOC_Click;
+            // 
+            // btnEditarOC
+            // 
+            btnEditarOC.ForeColor = Color.Blue;
+            btnEditarOC.IconChar = FontAwesome.Sharp.IconChar.Brush;
+            btnEditarOC.IconColor = Color.Blue;
+            btnEditarOC.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnEditarOC.Location = new Point(963, 274);
+            btnEditarOC.Name = "btnEditarOC";
+            btnEditarOC.Size = new Size(113, 58);
+            btnEditarOC.TabIndex = 5;
+            btnEditarOC.Text = "Editar";
+            btnEditarOC.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnEditarOC.UseVisualStyleBackColor = true;
+            btnEditarOC.Click += btnEditarOC_Click;
+            // 
+            // btnRegresar
+            // 
+            btnRegresar.BackColor = Color.DarkSlateGray;
+            btnRegresar.ForeColor = Color.White;
+            btnRegresar.IconChar = FontAwesome.Sharp.IconChar.ArrowLeft;
+            btnRegresar.IconColor = Color.White;
+            btnRegresar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnRegresar.Location = new Point(942, 15);
+            btnRegresar.Name = "btnRegresar";
+            btnRegresar.Size = new Size(134, 50);
+            btnRegresar.TabIndex = 6;
+            btnRegresar.Text = "Regresar";
+            btnRegresar.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnRegresar.UseVisualStyleBackColor = false;
+            btnRegresar.Click += btnRegresar_Click;
+            // 
             // mdOrdenCompraPendiente
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(969, 630);
+            ClientSize = new Size(1088, 652);
+            Controls.Add(btnRegresar);
+            Controls.Add(btnEditarOC);
+            Controls.Add(btnAnularOC);
+            Controls.Add(label2);
+            Controls.Add(label1);
             Controls.Add(dgvdetalles);
             Controls.Add(dgvdata);
             Name = "mdOrdenCompraPendiente";
@@ -215,6 +289,7 @@
             ((System.ComponentModel.ISupportInitialize)dgvdata).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvdetalles).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -237,5 +312,10 @@
         private DataGridViewTextBoxColumn SubtotalEstimado;
         private DataGridViewTextBoxColumn IdDetalleOrdenCompra;
         private DataGridViewTextBoxColumn IdProducto;
+        private Label label1;
+        private Label label2;
+        private FontAwesome.Sharp.IconButton btnAnularOC;
+        private FontAwesome.Sharp.IconButton btnEditarOC;
+        private FontAwesome.Sharp.IconButton btnRegresar;
     }
 }

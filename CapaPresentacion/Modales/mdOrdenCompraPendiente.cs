@@ -10,51 +10,67 @@ namespace CapaPresentacion.Modales
     {
         public Orden_Compra _OrdenCompraSeleccionada { get; set; }
 
-        public mdOrdenCompraPendiente()
+        // ✅ Usuario actual dentro del modal
+        private Usuario usuarioActual;
+
+        public mdOrdenCompraPendiente(Usuario usuario = null)
         {
             InitializeComponent();
 
-            // Forzamos eventos para evitar problemas de diseñador
+            usuarioActual = usuario;
+
+            // ✅ Evitar dobles eventos si el diseñador ya los engancha
+            this.Load -= mdOrdenCompraPendiente_Load;
             this.Load += mdOrdenCompraPendiente_Load;
+
+            dgvdata.SelectionChanged -= dgvdata_SelectionChanged;
             dgvdata.SelectionChanged += dgvdata_SelectionChanged;
+
+            dgvdata.CellClick -= dgvdata_CellClick;
             dgvdata.CellClick += dgvdata_CellClick;
+
+            dgvdata.CellDoubleClick -= dgvdata_CellDoubleClick;
             dgvdata.CellDoubleClick += dgvdata_CellDoubleClick;
 
-            // Config básica del detalle (por si no está en diseñador)
+            // ✅ Botones (si ya están en el diseñador, igual no se duplican)
+            btnEditarOC.Click -= btnEditarOC_Click;
+            btnEditarOC.Click += btnEditarOC_Click;
+
+            btnAnularOC.Click -= btnAnularOC_Click;
+            btnAnularOC.Click += btnAnularOC_Click;
+
             dgvdetalles.ReadOnly = true;
             dgvdetalles.AllowUserToAddRows = false;
             dgvdetalles.AllowUserToDeleteRows = false;
             dgvdetalles.MultiSelect = false;
             dgvdetalles.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+            dgvdata.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvdata.MultiSelect = false;
         }
 
-        // -----------------------------
-        // LOAD: Carga cabecera de OC
-        // -----------------------------
         private void mdOrdenCompraPendiente_Load(object sender, EventArgs e)
         {
             try
             {
                 List<Orden_Compra> listaOC = new CN_OrdenCompra().ListarOrdenesPendientes();
 
-                // 1) Cargar grilla de órdenes
                 dgvdata.Rows.Clear();
                 dgvdata.AllowUserToAddRows = false;
 
                 foreach (Orden_Compra oc in listaOC)
                 {
                     dgvdata.Rows.Add(
-                        oc.NumeroDocumento,                      // 0 Nro. Orden
-                        oc.FechaRegistro,                        // 1 Fecha
-                        oc.oProveedor.RazonSocial,               // 2 Proveedor
-                        oc.MontoTotalEstimado.ToString("0.00"),  // 3 Total Estimado
-                        oc.IdOrdenCompra,                        // 4 IdOrdenCompra (oculta)
-                        oc.oProveedor.IdProveedor,               // 5 IdProveedor (oculta)
-                        oc.oProveedor.Documento                  // 6 DocumentoProveedor (oculta)
+                        oc.NumeroDocumento,
+                        oc.FechaRegistro,
+                        oc.oProveedor.RazonSocial,
+                        oc.MontoTotalEstimado.ToString("0.00"),
+                        oc.IdOrdenCompra,
+                        oc.oProveedor.IdProveedor,
+                        oc.oProveedor.Documento
                     );
                 }
 
-                // 2) Ocultar columnas internas por nombre (si existen)
                 if (dgvdata.Columns.Contains("IdOrdenCompra"))
                     dgvdata.Columns["IdOrdenCompra"].Visible = false;
                 if (dgvdata.Columns.Contains("IdProveedor"))
@@ -62,11 +78,14 @@ namespace CapaPresentacion.Modales
                 if (dgvdata.Columns.Contains("DocumentoProveedor"))
                     dgvdata.Columns["DocumentoProveedor"].Visible = false;
 
-                // 3) Seleccionar primera fila y cargar detalle automáticamente
                 if (dgvdata.Rows.Count > 0)
                 {
                     dgvdata.ClearSelection();
                     dgvdata.Rows[0].Selected = true;
+
+                    // ✅ asegurar CurrentCell para que SelectedRows/CurrentRow sea consistente
+                    dgvdata.CurrentCell = dgvdata.Rows[0].Cells[0];
+
                     CargarDetalleOrdenDesdeFila(dgvdata.Rows[0]);
                 }
                 else
@@ -83,9 +102,6 @@ namespace CapaPresentacion.Modales
             }
         }
 
-        // -----------------------------------------
-        // Al cambiar selección: cargar detalle
-        // -----------------------------------------
         private void dgvdata_SelectionChanged(object sender, EventArgs e)
         {
             try
@@ -98,13 +114,9 @@ namespace CapaPresentacion.Modales
 
                 CargarDetalleOrdenDesdeFila(dgvdata.SelectedRows[0]);
             }
-            catch
-            {
-                // Evitar que el evento moleste en ciertos redraws
-            }
+            catch { }
         }
 
-        // CellClick también ayuda cuando seleccionás con mouse
         private void dgvdata_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
@@ -112,22 +124,16 @@ namespace CapaPresentacion.Modales
             try
             {
                 DataGridViewRow row = dgvdata.Rows[e.RowIndex];
+                row.Selected = true;
                 CargarDetalleOrdenDesdeFila(row);
             }
-            catch
-            {
-                // silencio para no romper UX
-            }
+            catch { }
         }
 
-        // -------------------------------------------------------
-        // Cargar detalle de la OC seleccionada (productos)
-        // -------------------------------------------------------
         private void CargarDetalleOrdenDesdeFila(DataGridViewRow filaOC)
         {
             if (filaOC == null) { LimpiarDetalle(); return; }
 
-            // Tu IdOrdenCompra está en el índice 4 (columna oculta)
             int idOC = 0;
             if (!int.TryParse(filaOC.Cells[4].Value?.ToString(), out idOC) || idOC <= 0)
             {
@@ -146,12 +152,6 @@ namespace CapaPresentacion.Modales
                 int cantRecibida = d.CantidadRecibida;
                 int pendiente = cantOrdenada - cantRecibida;
 
-                // Si querés mostrar TODO, dejalo así.
-                // Si querés SOLO pendientes, descomentá:
-                // if (pendiente <= 0) continue;
-
-                // Intentamos cargar por NOMBRE de columna (recomendado).
-                // Si por alguna razón no existen esos nombres, cargamos por índice como fallback.
                 if (TieneColumnasDetallePorNombre())
                 {
                     int idx = dgvdetalles.Rows.Add();
@@ -165,28 +165,25 @@ namespace CapaPresentacion.Modales
                     row.Cells["PrecioEstimado"].Value = d.PrecioEstimado.ToString("0.00");
                     row.Cells["SubtotalEstimado"].Value = d.MontoTotalEstimado.ToString("0.00");
 
-                    // Ocultas útiles
                     row.Cells["IdDetalleOrdenCompra"].Value = d.IdDetalleOrdenCompra;
                     row.Cells["IdProducto"].Value = d.oProducto.IdProducto;
                 }
                 else
                 {
-                    // Fallback por índice (si no pusiste los Names como acordamos)
                     dgvdetalles.Rows.Add(
-                        d.oProducto.Codigo,                  // 0
-                        d.oProducto.Nombre,                  // 1
-                        cantOrdenada,                        // 2
-                        cantRecibida,                        // 3
-                        pendiente,                           // 4
-                        d.PrecioEstimado.ToString("0.00"),   // 5
-                        d.MontoTotalEstimado.ToString("0.00"), // 6
-                        d.IdDetalleOrdenCompra,              // 7 (oculta)
-                        d.oProducto.IdProducto               // 8 (oculta)
+                        d.oProducto.Codigo,
+                        d.oProducto.Nombre,
+                        cantOrdenada,
+                        cantRecibida,
+                        pendiente,
+                        d.PrecioEstimado.ToString("0.00"),
+                        d.MontoTotalEstimado.ToString("0.00"),
+                        d.IdDetalleOrdenCompra,
+                        d.oProducto.IdProducto
                     );
                 }
             }
 
-            // Asegurar ocultas
             OcultarColumnasDetalle();
         }
 
@@ -218,21 +215,15 @@ namespace CapaPresentacion.Modales
             dgvdetalles.AllowUserToAddRows = false;
         }
 
-        // -------------------------------------------------------
-        // Doble click: devolver OC seleccionada al formulario padre
-        // -------------------------------------------------------
         private void dgvdata_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0)
-                return;
+            if (e.RowIndex < 0) return;
 
             DataGridViewRow row = dgvdata.Rows[e.RowIndex];
 
-            // Celdas visibles
             string numDoc = row.Cells[0].Value?.ToString() ?? "";
             string razonSocialProv = row.Cells[2].Value?.ToString() ?? "";
 
-            // Celdas ocultas (Índices 4, 5 y 6)
             int idOC = 0;
             int idProveedor = 0;
             string docProv = "";
@@ -255,6 +246,96 @@ namespace CapaPresentacion.Modales
 
             this.DialogResult = DialogResult.OK;
             this.Close();
+        }
+
+        private void btnAnularOC_Click(object sender, EventArgs e)
+        {
+            if (dgvdata.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Seleccione una orden.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            var row = dgvdata.SelectedRows[0];
+
+            int idOC = 0;
+            int.TryParse(row.Cells[4].Value?.ToString(), out idOC);
+
+            if (idOC <= 0)
+            {
+                MessageBox.Show("IdOrdenCompra inválido.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var confirm = MessageBox.Show(
+                "¿Seguro que querés ANULAR esta Orden de Compra?\n\nEsto NO se puede deshacer.",
+                "Confirmar",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (confirm != DialogResult.Yes) return;
+
+            int idUsuario = (usuarioActual != null) ? usuarioActual.IdUsuario : 0;
+
+            string mensaje;
+            bool ok = new CN_OrdenCompra().Anular(idOC, idUsuario, out mensaje);
+
+            MessageBox.Show(mensaje, "Mensaje",
+                MessageBoxButtons.OK,
+                ok ? MessageBoxIcon.Information : MessageBoxIcon.Error);
+
+            if (ok)
+            {
+                mdOrdenCompraPendiente_Load(this, EventArgs.Empty);
+            }
+        }
+
+        private void btnEditarOC_Click(object sender, EventArgs e)
+        {
+            if (dgvdata.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Seleccioná una orden.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            var fila = dgvdata.SelectedRows[0];
+            int idOC = 0;
+            int.TryParse(fila.Cells[4].Value?.ToString(), out idOC);
+
+            if (idOC <= 0)
+            {
+                MessageBox.Show("IdOrdenCompra inválido.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            string msg = "";
+            bool editable = new CN_OrdenCompra().PuedeEditar(idOC, out msg);
+            if (!editable)
+            {
+                MessageBox.Show(msg, "No se puede editar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // ✅ YA NO SE USA Tag. Se usa el usuario del constructor.
+            if (usuarioActual == null)
+            {
+                MessageBox.Show("No se encontró el usuario actual (constructor).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            this.Hide();
+            using (var frm = new frmOrdenCompra(usuarioActual, idOC, permitirEditarProveedor: true))
+            {
+                frm.ShowDialog();
+            }
+            this.Show();
+
+            mdOrdenCompraPendiente_Load(this, EventArgs.Empty);
+        }
+
+        private void btnRegresar_Click(object sender, EventArgs e)
+        {
+            this.Close(); 
         }
     }
 }

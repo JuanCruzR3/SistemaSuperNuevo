@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             label1 = new Label();
             label2 = new Label();
             groupBox1 = new GroupBox();
@@ -55,7 +55,6 @@
             txtproducto = new TextBox();
             txtcodproducto = new TextBox();
             label7 = new Label();
-            label8 = new Label();
             btnagregarproducto = new FontAwesome.Sharp.IconButton();
             dgvdata = new DataGridView();
             IdDetalleOrdenCompra = new DataGridViewTextBoxColumn();
@@ -98,7 +97,7 @@
             label1.Location = new Point(12, 12);
             label1.Name = "label1";
             label1.Padding = new Padding(2, 0, 0, 0);
-            label1.Size = new Size(1376, 630);
+            label1.Size = new Size(1396, 630);
             label1.TabIndex = 21;
             label1.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -182,7 +181,7 @@
             groupBox2.Size = new Size(600, 128);
             groupBox2.TabIndex = 24;
             groupBox2.TabStop = false;
-            groupBox2.Text = "Información de proveedor";
+            groupBox2.Text = "Información de orden de compra";
             // 
             // txtidproveedor
             // 
@@ -235,18 +234,18 @@
             label5.AutoSize = true;
             label5.Location = new Point(327, 48);
             label5.Name = "label5";
-            label5.Size = new Size(97, 20);
+            label5.Size = new Size(180, 20);
             label5.TabIndex = 1;
-            label5.Text = "Razón Social:";
+            label5.Text = "Razón Social (proveedor):";
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Location = new Point(7, 50);
             label6.Name = "label6";
-            label6.Size = new Size(166, 20);
+            label6.Size = new Size(132, 20);
             label6.TabIndex = 0;
-            label6.Text = "Número de Documento";
+            label6.Text = "Número de Orden:";
             // 
             // groupBox3
             // 
@@ -261,19 +260,18 @@
             groupBox3.Controls.Add(txtproducto);
             groupBox3.Controls.Add(txtcodproducto);
             groupBox3.Controls.Add(label7);
-            groupBox3.Controls.Add(label8);
             groupBox3.Location = new Point(45, 202);
             groupBox3.Margin = new Padding(3, 4, 3, 4);
             groupBox3.Name = "groupBox3";
             groupBox3.Padding = new Padding(3, 4, 3, 4);
-            groupBox3.Size = new Size(1054, 128);
+            groupBox3.Size = new Size(576, 128);
             groupBox3.TabIndex = 25;
             groupBox3.TabStop = false;
             groupBox3.Text = "Información de producto";
             // 
             // txtcantidad
             // 
-            txtcantidad.Location = new Point(892, 68);
+            txtcantidad.Location = new Point(454, 68);
             txtcantidad.Margin = new Padding(3, 4, 3, 4);
             txtcantidad.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             txtcantidad.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
@@ -294,7 +292,7 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(892, 44);
+            label11.Location = new Point(454, 44);
             label11.Name = "label11";
             label11.Size = new Size(76, 20);
             label11.TabIndex = 30;
@@ -303,7 +301,7 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(772, 44);
+            label10.Location = new Point(334, 44);
             label10.Name = "label10";
             label10.Size = new Size(94, 20);
             label10.TabIndex = 29;
@@ -312,7 +310,7 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(660, 44);
+            label9.Location = new Point(222, 44);
             label9.Name = "label9";
             label9.Size = new Size(114, 20);
             label9.TabIndex = 26;
@@ -320,7 +318,7 @@
             // 
             // txtprecioventa
             // 
-            txtprecioventa.Location = new Point(772, 68);
+            txtprecioventa.Location = new Point(334, 68);
             txtprecioventa.Margin = new Padding(3, 4, 3, 4);
             txtprecioventa.Name = "txtprecioventa";
             txtprecioventa.Size = new Size(105, 27);
@@ -329,7 +327,7 @@
             // 
             // txtpreciocompra
             // 
-            txtpreciocompra.Location = new Point(660, 68);
+            txtpreciocompra.Location = new Point(222, 68);
             txtpreciocompra.Margin = new Padding(3, 4, 3, 4);
             txtpreciocompra.Name = "txtpreciocompra";
             txtpreciocompra.Size = new Size(105, 27);
@@ -338,7 +336,7 @@
             // 
             // txtproducto
             // 
-            txtproducto.Location = new Point(216, 67);
+            txtproducto.Location = new Point(6, 67);
             txtproducto.Margin = new Padding(3, 4, 3, 4);
             txtproducto.Name = "txtproducto";
             txtproducto.ReadOnly = true;
@@ -347,10 +345,10 @@
             // 
             // txtcodproducto
             // 
-            txtcodproducto.Location = new Point(7, 67);
+            txtcodproducto.Location = new Point(252, 12);
             txtcodproducto.Margin = new Padding(3, 4, 3, 4);
             txtcodproducto.Name = "txtcodproducto";
-            txtcodproducto.Size = new Size(185, 27);
+            txtcodproducto.Size = new Size(47, 27);
             txtcodproducto.TabIndex = 2;
             txtcodproducto.KeyDown += txtcodproducto_KeyDown;
             txtcodproducto.KeyPress += textBoxNumeros_KeyPress;
@@ -358,20 +356,11 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(216, 43);
+            label7.Location = new Point(7, 44);
             label7.Name = "label7";
             label7.Size = new Size(72, 20);
             label7.TabIndex = 1;
             label7.Text = "Producto:";
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Location = new Point(7, 43);
-            label8.Name = "label8";
-            label8.Size = new Size(106, 20);
-            label8.TabIndex = 0;
-            label8.Text = "Cod. Producto:";
             // 
             // btnagregarproducto
             // 
@@ -380,12 +369,12 @@
             btnagregarproducto.IconChar = FontAwesome.Sharp.IconChar.Plus;
             btnagregarproducto.IconColor = Color.ForestGreen;
             btnagregarproducto.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnagregarproducto.Location = new Point(1246, 246);
+            btnagregarproducto.Location = new Point(826, 226);
             btnagregarproducto.Margin = new Padding(3, 4, 3, 4);
             btnagregarproducto.Name = "btnagregarproducto";
-            btnagregarproducto.Size = new Size(112, 86);
+            btnagregarproducto.Size = new Size(112, 93);
             btnagregarproducto.TabIndex = 27;
-            btnagregarproducto.Text = "Agregar";
+            btnagregarproducto.Text = "Agregar Producto";
             btnagregarproducto.TextImageRelation = TextImageRelation.ImageAboveText;
             btnagregarproducto.UseVisualStyleBackColor = false;
             btnagregarproducto.Click += btnagregarproducto_Click;
@@ -394,28 +383,28 @@
             // 
             dgvdata.AllowUserToAddRows = false;
             dgvdata.BackgroundColor = Color.White;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.Padding = new Padding(2);
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgvdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = SystemColors.Control;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle5.Padding = new Padding(2);
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            dgvdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             dgvdata.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvdata.Columns.AddRange(new DataGridViewColumn[] { IdDetalleOrdenCompra, IdProducto, Producto, PrecioCompra, PrecioVenta, Cantidad, Subtotal, CantidadPendienteMax, btneliminar });
-            dgvdata.Location = new Point(590, 348);
+            dgvdata.Location = new Point(729, 342);
             dgvdata.Margin = new Padding(3, 4, 3, 4);
             dgvdata.MultiSelect = false;
             dgvdata.Name = "dgvdata";
             dgvdata.ReadOnly = true;
             dgvdata.RowHeadersWidth = 62;
-            dataGridViewCellStyle2.SelectionBackColor = Color.White;
-            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
-            dgvdata.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.SelectionBackColor = Color.White;
+            dataGridViewCellStyle6.SelectionForeColor = Color.Black;
+            dgvdata.RowsDefaultCellStyle = dataGridViewCellStyle6;
             dgvdata.RowTemplate.Height = 28;
-            dgvdata.Size = new Size(626, 265);
+            dgvdata.Size = new Size(662, 265);
             dgvdata.TabIndex = 28;
             dgvdata.CellContentClick += dgvdata_CellContentClick;
             dgvdata.CellPainting += dgvdata_CellPainting;
@@ -503,19 +492,19 @@
             btnregistrar.IconColor = SystemColors.Highlight;
             btnregistrar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnregistrar.IconSize = 27;
-            btnregistrar.Location = new Point(1241, 522);
+            btnregistrar.Location = new Point(1279, 276);
             btnregistrar.Margin = new Padding(3, 4, 3, 4);
             btnregistrar.Name = "btnregistrar";
-            btnregistrar.Size = new Size(120, 50);
+            btnregistrar.Size = new Size(112, 58);
             btnregistrar.TabIndex = 29;
-            btnregistrar.Text = "Registrar";
+            btnregistrar.Text = "Registrar Compra";
             btnregistrar.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnregistrar.UseVisualStyleBackColor = true;
             btnregistrar.Click += btnregistrar_Click;
             // 
             // txttotalapagar
             // 
-            txttotalapagar.Location = new Point(1246, 470);
+            txttotalapagar.Location = new Point(657, 269);
             txttotalapagar.Margin = new Padding(3, 4, 3, 4);
             txttotalapagar.Name = "txttotalapagar";
             txttotalapagar.ReadOnly = true;
@@ -527,7 +516,7 @@
             // 
             label12.AutoSize = true;
             label12.BackColor = Color.White;
-            label12.Location = new Point(1246, 446);
+            label12.Location = new Point(657, 243);
             label12.Name = "label12";
             label12.Size = new Size(98, 20);
             label12.TabIndex = 30;
@@ -544,10 +533,10 @@
             btnlimpiarbuscador.IconColor = Color.Black;
             btnlimpiarbuscador.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnlimpiarbuscador.IconSize = 18;
-            btnlimpiarbuscador.Location = new Point(1241, 370);
+            btnlimpiarbuscador.Location = new Point(1205, 110);
             btnlimpiarbuscador.Margin = new Padding(3, 4, 3, 4);
             btnlimpiarbuscador.Name = "btnlimpiarbuscador";
-            btnlimpiarbuscador.Size = new Size(138, 42);
+            btnlimpiarbuscador.Size = new Size(153, 51);
             btnlimpiarbuscador.TabIndex = 67;
             btnlimpiarbuscador.Text = "Limpiar Compra";
             btnlimpiarbuscador.TextAlign = ContentAlignment.MiddleRight;
@@ -581,11 +570,11 @@
             dgvpendientesOC.BackgroundColor = Color.White;
             dgvpendientesOC.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvpendientesOC.Columns.AddRange(new DataGridViewColumn[] { IdDetalleOrdenCompraOC, IdProductoOC, ProductoOC, PrecioEstimadoOC, CantidadOrdenadaOC, CantidadRecibidaOC, CantidadPendienteOC });
-            dgvpendientesOC.Location = new Point(30, 348);
+            dgvpendientesOC.Location = new Point(30, 337);
             dgvpendientesOC.Name = "dgvpendientesOC";
             dgvpendientesOC.RowHeadersWidth = 51;
             dgvpendientesOC.RowTemplate.Height = 29;
-            dgvpendientesOC.Size = new Size(554, 265);
+            dgvpendientesOC.Size = new Size(677, 265);
             dgvpendientesOC.TabIndex = 70;
             // 
             // IdDetalleOrdenCompraOC
@@ -695,7 +684,6 @@
         private GroupBox groupBox3;
         private TextBox txtcodproducto;
         private Label label7;
-        private Label label8;
         private TextBox txtidproducto;
         private Label label11;
         private Label label10;
