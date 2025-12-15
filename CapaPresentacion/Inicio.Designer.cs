@@ -47,6 +47,7 @@
             menureportes = new FontAwesome.Sharp.IconMenuItem();
             submenureportecompras = new ToolStripMenuItem();
             submenureporteventas = new ToolStripMenuItem();
+            submenureporteordenescompra = new ToolStripMenuItem();
             menuacercade = new FontAwesome.Sharp.IconMenuItem();
             menutitulo = new MenuStrip();
             label1 = new Label();
@@ -174,7 +175,7 @@
             submenuregistrarcompra.IconColor = Color.Black;
             submenuregistrarcompra.IconFont = FontAwesome.Sharp.IconFont.Auto;
             submenuregistrarcompra.Name = "submenuregistrarcompra";
-            submenuregistrarcompra.Size = new Size(229, 30);
+            submenuregistrarcompra.Size = new Size(225, 26);
             submenuregistrarcompra.Text = "Registrar";
             submenuregistrarcompra.Click += submenuregistrarcompra_Click;
             // 
@@ -184,21 +185,21 @@
             submenuverdetallecompra.IconColor = Color.Black;
             submenuverdetallecompra.IconFont = FontAwesome.Sharp.IconFont.Auto;
             submenuverdetallecompra.Name = "submenuverdetallecompra";
-            submenuverdetallecompra.Size = new Size(229, 30);
+            submenuverdetallecompra.Size = new Size(225, 26);
             submenuverdetallecompra.Text = "Ver Detalle";
             submenuverdetallecompra.Click += submenuverdetallecompra_Click;
             // 
             // submenuordendecompra
             // 
             submenuordendecompra.Name = "submenuordendecompra";
-            submenuordendecompra.Size = new Size(229, 30);
+            submenuordendecompra.Size = new Size(225, 26);
             submenuordendecompra.Text = "Ordenes de Compra";
             submenuordendecompra.Click += submenuordendecompra_Click;
             // 
             // submenuverordenes
             // 
             submenuverordenes.Name = "submenuverordenes";
-            submenuverordenes.Size = new Size(229, 30);
+            submenuverordenes.Size = new Size(225, 26);
             submenuverordenes.Text = "Ver Ordenes";
             submenuverordenes.Click += submenuverordenes_Click;
             // 
@@ -230,7 +231,7 @@
             // 
             // menureportes
             // 
-            menureportes.DropDownItems.AddRange(new ToolStripItem[] { submenureportecompras, submenureporteventas });
+            menureportes.DropDownItems.AddRange(new ToolStripItem[] { submenureportecompras, submenureporteventas, submenureporteordenescompra });
             menureportes.IconChar = FontAwesome.Sharp.IconChar.ChartBar;
             menureportes.IconColor = Color.Black;
             menureportes.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -244,16 +245,23 @@
             // submenureportecompras
             // 
             submenureportecompras.Name = "submenureportecompras";
-            submenureportecompras.Size = new Size(208, 26);
+            submenureportecompras.Size = new Size(261, 26);
             submenureportecompras.Text = "Reporte Compras";
             submenureportecompras.Click += submenureportecompras_Click;
             // 
             // submenureporteventas
             // 
             submenureporteventas.Name = "submenureporteventas";
-            submenureporteventas.Size = new Size(208, 26);
+            submenureporteventas.Size = new Size(261, 26);
             submenureporteventas.Text = "Reporte Ventas";
             submenureporteventas.Click += submenureporteventas_Click;
+            // 
+            // submenureporteordenescompra
+            // 
+            submenureporteordenescompra.Name = "submenureporteordenescompra";
+            submenureporteordenescompra.Size = new Size(261, 26);
+            submenureporteordenescompra.Text = "Reporte Ordenes Compra";
+            submenureporteordenescompra.Click += submenureporteordenescompra_Click;
             // 
             // menuacercade
             // 
@@ -396,5 +404,6 @@
         private FontAwesome.Sharp.IconButton btnsalir;
         private ToolStripMenuItem submenuordendecompra;
         private ToolStripMenuItem submenuverordenes;
+        private ToolStripMenuItem submenureporteordenescompra;
     }
 }

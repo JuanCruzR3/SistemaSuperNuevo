@@ -159,5 +159,10 @@ namespace CapaPresentacion
             AbrirFormulario(menucompras, new frmDetalleOrdenCompra());
         }
 
+        private void submenureporteordenescompra_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario(menureportes, new frmReporteOrdenCompra());
+        }
+
     }
 }
