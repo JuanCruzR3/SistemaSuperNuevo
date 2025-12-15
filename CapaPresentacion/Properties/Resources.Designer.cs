@@ -19,7 +19,7 @@ namespace CapaPresentacion.Properties {
     // a través de una herramienta como ResGen o Visual Studio.
     // Para agregar o quitar un miembro, edite el archivo .ResX y, a continuación, vuelva a ejecutar ResGen
     // con la opción /str o recompile su proyecto de VS.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -119,6 +119,39 @@ namespace CapaPresentacion.Properties {
         internal static string PlantillaCompra {
             get {
                 return ResourceManager.GetString("PlantillaCompra", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a &lt;!DOCTYPE html&gt;
+        ///&lt;html&gt;
+        ///&lt;head&gt;
+        ///    &lt;meta charset=&quot;utf-8&quot; /&gt;
+        ///    &lt;title&gt;Orden de Compra&lt;/title&gt;
+        ///    &lt;style&gt;
+        ///        body {
+        ///            font-family: Arial, Helvetica, sans-serif;
+        ///            font-size: 12px;
+        ///            color: #222;
+        ///        }
+        ///
+        ///        .header {
+        ///            width: 100%;
+        ///            margin-bottom: 12px;
+        ///        }
+        ///
+        ///        .negocio {
+        ///            text-align: right;
+        ///        }
+        ///
+        ///            .negocio h2 {
+        ///                margin: 0;
+        ///                font-size: 16px;
+        ///            } [resto de la cadena truncado]&quot;;.
+        /// </summary>
+        internal static string PlantillaOrdenCompra {
+            get {
+                return ResourceManager.GetString("PlantillaOrdenCompra", resourceCulture);
             }
         }
         

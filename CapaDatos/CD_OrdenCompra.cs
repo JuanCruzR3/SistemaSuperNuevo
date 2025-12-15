@@ -323,6 +323,9 @@ namespace CapaDatos
             }
         }
 
+        // --------------------------------------------------------------------------------
+        // CORRELATIVO
+        // --------------------------------------------------------------------------------
         public int ObtenerCorrelativo()
         {
             int idcorrelativo = 0;
@@ -352,6 +355,62 @@ namespace CapaDatos
             return idcorrelativo;
         }
 
-    }
+        // --------------------------------------------------------------------------------
+        // 8. 🆕 OBTENER ORDEN POR NÚMERO (DETALLE ORDEN COMPRA)
+        // --------------------------------------------------------------------------------
+        public Orden_Compra ObtenerOrdenCompraPorNumero(string numeroDocumento)
+        {
+            Orden_Compra oc = new Orden_Compra();
 
+            using (SqlConnection cn = new SqlConnection(Conexion.cadena))
+            {
+                try
+                {
+                    cn.Open();
+
+                    string query = @"
+                        SELECT OC.IdOrdenCompra, OC.TipoDocumento, OC.NumeroDocumento,
+                               CONVERT(VARCHAR(10), OC.FechaRegistro, 103) FechaRegistro,
+                               OC.MontoTotalEstimado,
+                               OC.Estado,
+                               U.NombreCompleto,
+                               P.Documento, P.RazonSocial
+                        FROM ORDEN_COMPRA OC
+                        INNER JOIN USUARIO U ON U.IdUsuario = OC.IdUsuario
+                        INNER JOIN PROVEEDOR P ON P.IdProveedor = OC.IdProveedor
+                        WHERE OC.NumeroDocumento = @numero";
+
+                    SqlCommand cmd = new SqlCommand(query, cn);
+                    cmd.Parameters.AddWithValue("@numero", numeroDocumento);
+
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        if (!dr.Read()) return new Orden_Compra();
+
+                        oc.IdOrdenCompra = Convert.ToInt32(dr["IdOrdenCompra"]);
+                        oc.TipoDocumento = dr["TipoDocumento"].ToString();
+                        oc.NumeroDocumento = dr["NumeroDocumento"].ToString();
+                        oc.FechaRegistro = dr["FechaRegistro"].ToString();
+                        oc.MontoTotalEstimado = Convert.ToDecimal(dr["MontoTotalEstimado"]);
+
+                        oc.Estado = dr["Estado"].ToString(); // ✅ NUEVO
+
+                        oc.oUsuario = new Usuario { NombreCompleto = dr["NombreCompleto"].ToString() };
+                        oc.oProveedor = new Proveedor
+                        {
+                            Documento = dr["Documento"].ToString(),
+                            RazonSocial = dr["RazonSocial"].ToString()
+                        };
+                    }
+
+                    oc.oDetalleOrdenCompra = ObtenerDetalleOrdenCompra(oc.IdOrdenCompra);
+                }
+                catch
+                {
+                    oc = new Orden_Compra();
+                }
+            }
+            return oc;
+        }
+    }
 }

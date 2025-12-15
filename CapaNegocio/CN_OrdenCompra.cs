@@ -39,14 +39,6 @@ namespace CapaNegocio
 
         public bool Anular(int idOrdenCompra, int idUsuario, out string Mensaje)
         {
-            Mensaje = string.Empty;
-
-            if (idOrdenCompra <= 0)
-            {
-                Mensaje = "IdOrdenCompra inválido.";
-                return false;
-            }
-
             return objcd_ordenCompra.Anular(idOrdenCompra, idUsuario, out Mensaje);
         }
 
@@ -55,44 +47,23 @@ namespace CapaNegocio
             return objcd_ordenCompra.PuedeEditar(idOrdenCompra, out mensaje);
         }
 
-        // ====== NUEVO: TRAER OC COMPLETA PARA EDITAR ======
         public Orden_Compra ObtenerOrdenParaEdicion(int idOrdenCompra)
         {
             return objcd_ordenCompra.ObtenerOrdenParaEdicion(idOrdenCompra);
         }
 
-        // ====== NUEVO: ACTUALIZAR OC (proveedor + detalle) ======
-        public bool ActualizarOrdenCompra(int idOrdenCompra, int idProveedor, decimal montoTotalEstimado, DataTable detalleOrdenCompra, int idUsuario, out string mensaje)
+        public bool ActualizarOrdenCompra(int idOrdenCompra, int idProveedor, decimal montoTotalEstimado,
+            DataTable detalleOrdenCompra, int idUsuario, out string mensaje)
         {
-            mensaje = string.Empty;
+            return objcd_ordenCompra.ActualizarOrdenCompra(
+                idOrdenCompra, idProveedor, montoTotalEstimado,
+                detalleOrdenCompra, idUsuario, out mensaje);
+        }
 
-            if (idOrdenCompra <= 0)
-            {
-                mensaje = "IdOrdenCompra inválido.";
-                return false;
-            }
-
-            if (idProveedor <= 0)
-            {
-                mensaje = "Proveedor inválido.";
-                return false;
-            }
-
-            if (detalleOrdenCompra == null || detalleOrdenCompra.Rows.Count == 0)
-            {
-                mensaje = "Debe ingresar al menos un producto en la orden.";
-                return false;
-            }
-
-            // Seguridad: no editar si ya recibió algo o si hay compras
-            if (!PuedeEditar(idOrdenCompra, out string msg))
-            {
-                mensaje = msg;
-                return false;
-            }
-
-            return objcd_ordenCompra.ActualizarOrdenCompra(idOrdenCompra, idProveedor, montoTotalEstimado, detalleOrdenCompra, idUsuario, out mensaje);
+        // 🆕 NUEVO — DETALLE ORDEN COMPRA
+        public Orden_Compra ObtenerOrdenCompraPorNumero(string numeroDocumento)
+        {
+            return objcd_ordenCompra.ObtenerOrdenCompraPorNumero(numeroDocumento);
         }
     }
-
 }

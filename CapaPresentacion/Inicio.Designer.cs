@@ -41,6 +41,7 @@
             submenuregistrarcompra = new FontAwesome.Sharp.IconMenuItem();
             submenuverdetallecompra = new FontAwesome.Sharp.IconMenuItem();
             submenuordendecompra = new ToolStripMenuItem();
+            submenuverordenes = new ToolStripMenuItem();
             menuclientes = new FontAwesome.Sharp.IconMenuItem();
             menuproveedores = new FontAwesome.Sharp.IconMenuItem();
             menureportes = new FontAwesome.Sharp.IconMenuItem();
@@ -156,7 +157,7 @@
             // 
             // menucompras
             // 
-            menucompras.DropDownItems.AddRange(new ToolStripItem[] { submenuregistrarcompra, submenuverdetallecompra, submenuordendecompra });
+            menucompras.DropDownItems.AddRange(new ToolStripItem[] { submenuregistrarcompra, submenuverdetallecompra, submenuordendecompra, submenuverordenes });
             menucompras.IconChar = FontAwesome.Sharp.IconChar.DollyFlatbed;
             menucompras.IconColor = Color.Black;
             menucompras.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -193,6 +194,13 @@
             submenuordendecompra.Size = new Size(229, 30);
             submenuordendecompra.Text = "Ordenes de Compra";
             submenuordendecompra.Click += submenuordendecompra_Click;
+            // 
+            // submenuverordenes
+            // 
+            submenuverordenes.Name = "submenuverordenes";
+            submenuverordenes.Size = new Size(229, 30);
+            submenuverordenes.Text = "Ver Ordenes";
+            submenuverordenes.Click += submenuverordenes_Click;
             // 
             // menuclientes
             // 
@@ -387,5 +395,6 @@
         private ToolStripMenuItem submenureporteventas;
         private FontAwesome.Sharp.IconButton btnsalir;
         private ToolStripMenuItem submenuordendecompra;
+        private ToolStripMenuItem submenuverordenes;
     }
 }

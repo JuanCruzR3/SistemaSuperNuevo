@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Orden de Compra</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            color: #222;
+        }
+
+        .header {
+            width: 100%;
+            margin-bottom: 12px;
+        }
+
+        .negocio {
+            text-align: right;
+        }
+
+            .negocio h2 {
+                margin: 0;
+                font-size: 16px;
+            }
+
+            .negocio p {
+                margin: 2px 0;
+            }
+
+        .doc-title {
+            margin: 10px 0;
+            padding: 8px;
+            border: 1px solid #ccc;
+        }
+
+            .doc-title h3 {
+                margin: 0 0 6px 0;
+                font-size: 14px;
+            }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .box {
+            flex: 1;
+            border: 1px solid #ddd;
+            padding: 8px;
+            margin-top: 8px;
+        }
+
+            .box h4 {
+                margin: 0 0 6px 0;
+                font-size: 13px;
+            }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+        }
+
+        th, td {
+            border: 1px solid #999;
+            padding: 6px;
+        }
+
+        th {
+            background: #f2f2f2;
+            text-align: left;
+        }
+
+        td.num {
+            text-align: right;
+        }
+
+        .total {
+            margin-top: 10px;
+            text-align: right;
+            font-size: 13px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border: 1px solid #999;
+            border-radius: 4px;
+            font-size: 11px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="negocio">
+            <h2>@nombrenegocio</h2>
+            <p><b>RUC:</b> @docnegocio</p>
+            <p><b>Dirección:</b> @direcnegocio</p>
+        </div>
+    </div>
+
+    <div class="doc-title">
+        <h3>@tipodocumento - N° @numerodocumento</h3>
+        <p><b>Estado:</b> <span class="badge">@estado</span></p>
+    </div>
+
+    <div class="row">
+        <div class="box">
+            <h4>Información del Proveedor</h4>
+            <p><b>Documento:</b> @docproveedor</p>
+            <p><b>Razón Social:</b> @nombreproveedor</p>
+        </div>
+
+        <div class="box">
+            <h4>Información de Registro</h4>
+            <p><b>Fecha:</b> @fecharegistro</p>
+            <p><b>Usuario:</b> @usuarioregistro</p>
+        </div>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Precio Estimado</th>
+                <th>Cant. Ordenada</th>
+                <th>Subtotal</th>
+                <th>Cant. Recibida</th>
+                <th>Pendiente</th>
+            </tr>
+        </thead>
+        <tbody>
+            @filas
+        </tbody>
+    </table>
+
+    <div class="total">
+        <b>Monto Total Estimado:</b> @montototal
+    </div>
+
+</body>
+</html>

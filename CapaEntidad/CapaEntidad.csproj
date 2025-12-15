@@ -83,6 +83,7 @@
     <Compile Include="Proveedor.cs" />
     <Compile Include="ReporteCompra.cs" />
     <Compile Include="ReporteVenta.cs" />
+    <Compile Include="ReporteOrdenCompra.cs" />
     <Compile Include="Rol.cs" />
     <Compile Include="Usuario.cs" />
     <Compile Include="Venta.cs" />

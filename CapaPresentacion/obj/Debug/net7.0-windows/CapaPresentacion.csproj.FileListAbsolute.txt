@@ -405,3 +405,4 @@ C:\Users\juanc\OneDrive\Desktop\Juan\Sistema Ventas\SistemaVentas\SistemaVentas\
 C:\Users\juanc\OneDrive\Desktop\Juan\Sistema Ventas\SistemaVentas\SistemaVentas\CapaPresentacion\obj\Debug\net7.0-windows\ref\CapaPresentacion.dll
 C:\Users\juanc\OneDrive\Desktop\Juan\Sistema Ventas\SistemaVentas\SistemaVentas\CapaPresentacion\obj\Debug\net7.0-windows\CapaPresentacion.frmOrdenCompra.resources
 C:\Users\juanc\OneDrive\Desktop\Juan\Sistema Ventas\SistemaVentas\SistemaVentas\CapaPresentacion\obj\Debug\net7.0-windows\CapaPresentacion.Modales.mdOrdenCompraPendiente.resources
+C:\Users\juanc\OneDrive\Desktop\Juan\Sistema Ventas\SistemaVentas\SistemaVentas\CapaPresentacion\obj\Debug\net7.0-windows\CapaPresentacion.frmDetalleOrdenCompra.resources

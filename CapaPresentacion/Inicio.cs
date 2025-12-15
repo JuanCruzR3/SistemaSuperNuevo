@@ -153,6 +153,11 @@ namespace CapaPresentacion
                 this.Close();
             }
         }
-        
+
+        private void submenuverordenes_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario(menucompras, new frmDetalleOrdenCompra());
+        }
+
     }
 }

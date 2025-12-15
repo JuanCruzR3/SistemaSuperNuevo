@@ -11,7 +11,7 @@ namespace CapaEntidad
         public string TipoDocumento { get; set; }
         public string NumeroDocumento { get; set; }
         public decimal MontoTotalEstimado { get; set; }
-        public string Estado { get; set; } // PENDIENTE, RECIBIDO_PARCIAL, COMPLETADO
+        public string Estado { get; set; } 
         public List<Detalle_Orden_Compra> oDetalleOrdenCompra { get; set; }
         public string FechaRegistro { get; set; }
     }
