@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
+using CapaPresentacion.Modales; 
 
 namespace CapaPresentacion
 {
@@ -150,5 +151,14 @@ namespace CapaPresentacion
             foreach (DataGridViewRow row in dgvdata.Rows)
                 row.Visible = true;
         }
+
+        private void btnGenerarGrafico_Click(object sender, EventArgs e)
+        {
+            using (var frm = new frmGraficoOrdenesCompraEstado())
+            {
+                frm.ShowDialog();
+            }
+        }
+
     }
 }

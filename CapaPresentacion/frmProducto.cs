@@ -77,6 +77,9 @@ namespace CapaPresentacion
 
             // ✅ Dejar el formulario listo para cargar un producto nuevo (con código automático)
             Limpiar();
+
+            dgvdata.ScrollBars = ScrollBars.Both;
+            dgvdata.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
         }
 
         private void textBoxLetras_KeyPress(object sender, KeyPressEventArgs e)

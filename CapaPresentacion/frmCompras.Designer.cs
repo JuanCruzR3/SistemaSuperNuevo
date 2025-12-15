@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             label1 = new Label();
             label2 = new Label();
             groupBox1 = new GroupBox();
@@ -301,16 +301,16 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(334, 44);
+            label10.Location = new Point(315, 44);
             label10.Name = "label10";
-            label10.Size = new Size(94, 20);
+            label10.Size = new Size(126, 20);
             label10.TabIndex = 29;
-            label10.Text = "Precio Venta:";
+            label10.Text = "Precio Est. de Vta:";
             // 
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(222, 44);
+            label9.Location = new Point(197, 44);
             label9.Name = "label9";
             label9.Size = new Size(114, 20);
             label9.TabIndex = 26;
@@ -318,7 +318,7 @@
             // 
             // txtprecioventa
             // 
-            txtprecioventa.Location = new Point(334, 68);
+            txtprecioventa.Location = new Point(317, 68);
             txtprecioventa.Margin = new Padding(3, 4, 3, 4);
             txtprecioventa.Name = "txtprecioventa";
             txtprecioventa.Size = new Size(105, 27);
@@ -327,7 +327,7 @@
             // 
             // txtpreciocompra
             // 
-            txtpreciocompra.Location = new Point(222, 68);
+            txtpreciocompra.Location = new Point(197, 68);
             txtpreciocompra.Margin = new Padding(3, 4, 3, 4);
             txtpreciocompra.Name = "txtpreciocompra";
             txtpreciocompra.Size = new Size(105, 27);
@@ -383,15 +383,15 @@
             // 
             dgvdata.AllowUserToAddRows = false;
             dgvdata.BackgroundColor = Color.White;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = SystemColors.Control;
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle5.Padding = new Padding(2);
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            dgvdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.Padding = new Padding(2);
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvdata.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvdata.Columns.AddRange(new DataGridViewColumn[] { IdDetalleOrdenCompra, IdProducto, Producto, PrecioCompra, PrecioVenta, Cantidad, Subtotal, CantidadPendienteMax, btneliminar });
             dgvdata.Location = new Point(729, 342);
@@ -400,9 +400,9 @@
             dgvdata.Name = "dgvdata";
             dgvdata.ReadOnly = true;
             dgvdata.RowHeadersWidth = 62;
-            dataGridViewCellStyle6.SelectionBackColor = Color.White;
-            dataGridViewCellStyle6.SelectionForeColor = Color.Black;
-            dgvdata.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.SelectionBackColor = Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
+            dgvdata.RowsDefaultCellStyle = dataGridViewCellStyle2;
             dgvdata.RowTemplate.Height = 28;
             dgvdata.Size = new Size(662, 265);
             dgvdata.TabIndex = 28;

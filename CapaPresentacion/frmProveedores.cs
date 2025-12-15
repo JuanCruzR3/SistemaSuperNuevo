@@ -51,6 +51,9 @@ namespace CapaPresentacion
                     item.Estado == true ? "Activo" : "No Activo"
                  });
             }
+
+            dgvdata.ScrollBars = ScrollBars.Both;
+            dgvdata.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
         }
 
         private void textBoxNumeros_KeyPress(object sender, KeyPressEventArgs e)

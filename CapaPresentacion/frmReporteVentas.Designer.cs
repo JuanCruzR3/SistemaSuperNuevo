@@ -35,13 +35,6 @@
             btnexpotar = new FontAwesome.Sharp.IconButton();
             cbobuscarpor = new ComboBox();
             dgvdata = new DataGridView();
-            label4 = new Label();
-            txtfechafin = new DateTimePicker();
-            txtfechainicio = new DateTimePicker();
-            label2 = new Label();
-            label1 = new Label();
-            label10 = new Label();
-            btnbuscarproveedor = new FontAwesome.Sharp.IconButton();
             FechaRegistro = new DataGridViewTextBoxColumn();
             TipoDocumento = new DataGridViewTextBoxColumn();
             NumeroDocumento = new DataGridViewTextBoxColumn();
@@ -55,6 +48,14 @@
             PrecioVenta = new DataGridViewTextBoxColumn();
             Cantidad = new DataGridViewTextBoxColumn();
             SubTotal = new DataGridViewTextBoxColumn();
+            label4 = new Label();
+            txtfechafin = new DateTimePicker();
+            txtfechainicio = new DateTimePicker();
+            label2 = new Label();
+            label1 = new Label();
+            label10 = new Label();
+            btnbuscarproveedor = new FontAwesome.Sharp.IconButton();
+            btnGraficoTopProductos = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)dgvdata).BeginInit();
             SuspendLayout();
             // 
@@ -69,10 +70,10 @@
             btnbuscarpor.IconColor = Color.Black;
             btnbuscarpor.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnbuscarpor.IconSize = 16;
-            btnbuscarpor.Location = new Point(1529, 165);
-            btnbuscarpor.Margin = new Padding(4, 5, 4, 5);
+            btnbuscarpor.Location = new Point(1223, 132);
+            btnbuscarpor.Margin = new Padding(3, 4, 3, 4);
             btnbuscarpor.Name = "btnbuscarpor";
-            btnbuscarpor.Size = new Size(63, 38);
+            btnbuscarpor.Size = new Size(50, 30);
             btnbuscarpor.TabIndex = 102;
             btnbuscarpor.UseVisualStyleBackColor = false;
             btnbuscarpor.Click += btnbuscarpor_Click;
@@ -88,10 +89,10 @@
             btnlimpiarbuscador.IconColor = Color.Black;
             btnlimpiarbuscador.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnlimpiarbuscador.IconSize = 18;
-            btnlimpiarbuscador.Location = new Point(1600, 165);
-            btnlimpiarbuscador.Margin = new Padding(4, 5, 4, 5);
+            btnlimpiarbuscador.Location = new Point(1280, 132);
+            btnlimpiarbuscador.Margin = new Padding(3, 4, 3, 4);
             btnlimpiarbuscador.Name = "btnlimpiarbuscador";
-            btnlimpiarbuscador.Size = new Size(54, 38);
+            btnlimpiarbuscador.Size = new Size(43, 30);
             btnlimpiarbuscador.TabIndex = 103;
             btnlimpiarbuscador.TextAlign = ContentAlignment.MiddleRight;
             btnlimpiarbuscador.UseVisualStyleBackColor = false;
@@ -99,20 +100,19 @@
             // 
             // txtbusqueda
             // 
-            txtbusqueda.Location = new Point(1261, 167);
-            txtbusqueda.Margin = new Padding(4, 5, 4, 5);
+            txtbusqueda.Location = new Point(1009, 134);
+            txtbusqueda.Margin = new Padding(3, 4, 3, 4);
             txtbusqueda.Name = "txtbusqueda";
-            txtbusqueda.Size = new Size(257, 31);
+            txtbusqueda.Size = new Size(206, 27);
             txtbusqueda.TabIndex = 101;
             // 
             // label11
             // 
             label11.AutoSize = true;
             label11.BackColor = Color.White;
-            label11.Location = new Point(967, 175);
-            label11.Margin = new Padding(4, 0, 4, 0);
+            label11.Location = new Point(774, 140);
             label11.Name = "label11";
-            label11.Size = new Size(100, 25);
+            label11.Size = new Size(82, 20);
             label11.TabIndex = 99;
             label11.Text = "Buscar por:";
             // 
@@ -128,10 +128,10 @@
             btnexpotar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnexpotar.IconSize = 16;
             btnexpotar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnexpotar.Location = new Point(37, 165);
-            btnexpotar.Margin = new Padding(4, 5, 4, 5);
+            btnexpotar.Location = new Point(30, 132);
+            btnexpotar.Margin = new Padding(3, 4, 3, 4);
             btnexpotar.Name = "btnexpotar";
-            btnexpotar.Size = new Size(191, 45);
+            btnexpotar.Size = new Size(153, 36);
             btnexpotar.TabIndex = 98;
             btnexpotar.Text = "Descargar Excel";
             btnexpotar.UseVisualStyleBackColor = false;
@@ -142,10 +142,10 @@
             cbobuscarpor.BackColor = SystemColors.Control;
             cbobuscarpor.DropDownStyle = ComboBoxStyle.DropDownList;
             cbobuscarpor.FormattingEnabled = true;
-            cbobuscarpor.Location = new Point(1070, 167);
-            cbobuscarpor.Margin = new Padding(4, 5, 4, 5);
+            cbobuscarpor.Location = new Point(856, 134);
+            cbobuscarpor.Margin = new Padding(3, 4, 3, 4);
             cbobuscarpor.Name = "cbobuscarpor";
-            cbobuscarpor.Size = new Size(181, 33);
+            cbobuscarpor.Size = new Size(146, 28);
             cbobuscarpor.TabIndex = 100;
             // 
             // dgvdata
@@ -154,102 +154,14 @@
             dgvdata.BackgroundColor = Color.White;
             dgvdata.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvdata.Columns.AddRange(new DataGridViewColumn[] { FechaRegistro, TipoDocumento, NumeroDocumento, MontoTotal, UsuarioRegistro, DocumentoCliente, NombreCliente, CodigoProducto, NombreProducto, Categoria, PrecioVenta, Cantidad, SubTotal });
-            dgvdata.Location = new Point(37, 220);
-            dgvdata.Margin = new Padding(4, 5, 4, 5);
+            dgvdata.Location = new Point(30, 176);
+            dgvdata.Margin = new Padding(3, 4, 3, 4);
             dgvdata.Name = "dgvdata";
             dgvdata.ReadOnly = true;
             dgvdata.RowHeadersWidth = 62;
             dgvdata.RowTemplate.Height = 25;
-            dgvdata.Size = new Size(1634, 527);
+            dgvdata.Size = new Size(1307, 422);
             dgvdata.TabIndex = 97;
-            // 
-            // label4
-            // 
-            label4.BackColor = Color.White;
-            label4.BorderStyle = BorderStyle.FixedSingle;
-            label4.Font = new Font("Verdana", 15.75F, FontStyle.Italic, GraphicsUnit.Point);
-            label4.Location = new Point(17, 155);
-            label4.Margin = new Padding(4, 0, 4, 0);
-            label4.Name = "label4";
-            label4.Padding = new Padding(3, 0, 0, 0);
-            label4.Size = new Size(1679, 745);
-            label4.TabIndex = 96;
-            // 
-            // txtfechafin
-            // 
-            txtfechafin.CustomFormat = "dd/MM/yyyy";
-            txtfechafin.Format = DateTimePickerFormat.Short;
-            txtfechafin.Location = new Point(417, 73);
-            txtfechafin.Margin = new Padding(4, 5, 4, 5);
-            txtfechafin.Name = "txtfechafin";
-            txtfechafin.Size = new Size(140, 31);
-            txtfechafin.TabIndex = 90;
-            // 
-            // txtfechainicio
-            // 
-            txtfechainicio.CustomFormat = "dd/MM/yyyy";
-            txtfechainicio.Format = DateTimePickerFormat.Short;
-            txtfechainicio.Location = new Point(150, 73);
-            txtfechainicio.Margin = new Padding(4, 5, 4, 5);
-            txtfechainicio.Name = "txtfechainicio";
-            txtfechainicio.Size = new Size(140, 31);
-            txtfechainicio.TabIndex = 88;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.BackColor = Color.White;
-            label2.Location = new Point(323, 83);
-            label2.Margin = new Padding(4, 0, 4, 0);
-            label2.Name = "label2";
-            label2.Size = new Size(89, 25);
-            label2.TabIndex = 92;
-            label2.Text = "Fecha Fin:";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.White;
-            label1.Location = new Point(37, 83);
-            label1.Margin = new Padding(4, 0, 4, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(108, 25);
-            label1.TabIndex = 91;
-            label1.Text = "Fecha Inicio:";
-            // 
-            // label10
-            // 
-            label10.BackColor = Color.White;
-            label10.BorderStyle = BorderStyle.FixedSingle;
-            label10.Font = new Font("Verdana", 15.75F, FontStyle.Italic, GraphicsUnit.Point);
-            label10.Location = new Point(17, 15);
-            label10.Margin = new Padding(4, 0, 4, 0);
-            label10.Name = "label10";
-            label10.Padding = new Padding(3, 0, 0, 0);
-            label10.Size = new Size(1679, 114);
-            label10.TabIndex = 89;
-            label10.Text = "Reporte Ventas";
-            // 
-            // btnbuscarproveedor
-            // 
-            btnbuscarproveedor.BackColor = Color.White;
-            btnbuscarproveedor.Cursor = Cursors.Hand;
-            btnbuscarproveedor.FlatAppearance.BorderColor = Color.Black;
-            btnbuscarproveedor.FlatStyle = FlatStyle.Flat;
-            btnbuscarproveedor.ForeColor = Color.Black;
-            btnbuscarproveedor.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
-            btnbuscarproveedor.IconColor = Color.Black;
-            btnbuscarproveedor.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnbuscarproveedor.IconSize = 16;
-            btnbuscarproveedor.Location = new Point(614, 73);
-            btnbuscarproveedor.Margin = new Padding(4, 5, 4, 5);
-            btnbuscarproveedor.Name = "btnbuscarproveedor";
-            btnbuscarproveedor.Size = new Size(127, 38);
-            btnbuscarproveedor.TabIndex = 104;
-            btnbuscarproveedor.Text = "Buscar";
-            btnbuscarproveedor.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnbuscarproveedor.UseVisualStyleBackColor = false;
-            btnbuscarproveedor.Click += btnbuscarproveedor_Click_1;
             // 
             // FechaRegistro
             // 
@@ -355,11 +267,109 @@
             SubTotal.ReadOnly = true;
             SubTotal.Width = 85;
             // 
+            // label4
+            // 
+            label4.BackColor = Color.White;
+            label4.BorderStyle = BorderStyle.FixedSingle;
+            label4.Font = new Font("Verdana", 15.75F, FontStyle.Italic, GraphicsUnit.Point);
+            label4.Location = new Point(14, 124);
+            label4.Name = "label4";
+            label4.Padding = new Padding(2, 0, 0, 0);
+            label4.Size = new Size(1344, 596);
+            label4.TabIndex = 96;
+            // 
+            // txtfechafin
+            // 
+            txtfechafin.CustomFormat = "dd/MM/yyyy";
+            txtfechafin.Format = DateTimePickerFormat.Short;
+            txtfechafin.Location = new Point(334, 58);
+            txtfechafin.Margin = new Padding(3, 4, 3, 4);
+            txtfechafin.Name = "txtfechafin";
+            txtfechafin.Size = new Size(113, 27);
+            txtfechafin.TabIndex = 90;
+            // 
+            // txtfechainicio
+            // 
+            txtfechainicio.CustomFormat = "dd/MM/yyyy";
+            txtfechainicio.Format = DateTimePickerFormat.Short;
+            txtfechainicio.Location = new Point(120, 58);
+            txtfechainicio.Margin = new Padding(3, 4, 3, 4);
+            txtfechainicio.Name = "txtfechainicio";
+            txtfechainicio.Size = new Size(113, 27);
+            txtfechainicio.TabIndex = 88;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.White;
+            label2.Location = new Point(258, 66);
+            label2.Name = "label2";
+            label2.Size = new Size(73, 20);
+            label2.TabIndex = 92;
+            label2.Text = "Fecha Fin:";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = Color.White;
+            label1.Location = new Point(30, 66);
+            label1.Name = "label1";
+            label1.Size = new Size(90, 20);
+            label1.TabIndex = 91;
+            label1.Text = "Fecha Inicio:";
+            // 
+            // label10
+            // 
+            label10.BackColor = Color.White;
+            label10.BorderStyle = BorderStyle.FixedSingle;
+            label10.Font = new Font("Verdana", 15.75F, FontStyle.Italic, GraphicsUnit.Point);
+            label10.Location = new Point(14, 12);
+            label10.Name = "label10";
+            label10.Padding = new Padding(2, 0, 0, 0);
+            label10.Size = new Size(1344, 92);
+            label10.TabIndex = 89;
+            label10.Text = "Reporte Ventas";
+            // 
+            // btnbuscarproveedor
+            // 
+            btnbuscarproveedor.BackColor = Color.White;
+            btnbuscarproveedor.Cursor = Cursors.Hand;
+            btnbuscarproveedor.FlatAppearance.BorderColor = Color.Black;
+            btnbuscarproveedor.FlatStyle = FlatStyle.Flat;
+            btnbuscarproveedor.ForeColor = Color.Black;
+            btnbuscarproveedor.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
+            btnbuscarproveedor.IconColor = Color.Black;
+            btnbuscarproveedor.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnbuscarproveedor.IconSize = 16;
+            btnbuscarproveedor.Location = new Point(491, 58);
+            btnbuscarproveedor.Margin = new Padding(3, 4, 3, 4);
+            btnbuscarproveedor.Name = "btnbuscarproveedor";
+            btnbuscarproveedor.Size = new Size(102, 30);
+            btnbuscarproveedor.TabIndex = 104;
+            btnbuscarproveedor.Text = "Buscar";
+            btnbuscarproveedor.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnbuscarproveedor.UseVisualStyleBackColor = false;
+            btnbuscarproveedor.Click += btnbuscarproveedor_Click_1;
+            // 
+            // btnGraficoTopProductos
+            // 
+            btnGraficoTopProductos.IconChar = FontAwesome.Sharp.IconChar.None;
+            btnGraficoTopProductos.IconColor = Color.Black;
+            btnGraficoTopProductos.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnGraficoTopProductos.Location = new Point(856, 23);
+            btnGraficoTopProductos.Name = "btnGraficoTopProductos";
+            btnGraficoTopProductos.Size = new Size(135, 62);
+            btnGraficoTopProductos.TabIndex = 105;
+            btnGraficoTopProductos.Text = "Generar Gráfica";
+            btnGraficoTopProductos.UseVisualStyleBackColor = true;
+            btnGraficoTopProductos.Click += btnGraficoTopProductos_Click;
+            // 
             // frmReporteVentas
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1707, 942);
+            ClientSize = new Size(1366, 754);
+            Controls.Add(btnGraficoTopProductos);
             Controls.Add(btnbuscarproveedor);
             Controls.Add(btnbuscarpor);
             Controls.Add(btnlimpiarbuscador);
@@ -374,7 +384,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(label10);
-            Margin = new Padding(4, 5, 4, 5);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "frmReporteVentas";
             Text = "frmReporteVentas";
             Load += frmReporteVentas_Load;
@@ -412,5 +422,6 @@
         private DataGridViewTextBoxColumn PrecioVenta;
         private DataGridViewTextBoxColumn Cantidad;
         private DataGridViewTextBoxColumn SubTotal;
+        private FontAwesome.Sharp.IconButton btnGraficoTopProductos;
     }
 }

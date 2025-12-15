@@ -57,6 +57,7 @@
             label2 = new Label();
             label1 = new Label();
             label10 = new Label();
+            btnGenerarGrafico = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)dgvdata).BeginInit();
             SuspendLayout();
             // 
@@ -373,11 +374,28 @@
             label10.TabIndex = 89;
             label10.Text = "Reporte Orden Compras";
             // 
+            // btnGenerarGrafico
+            // 
+            btnGenerarGrafico.BackColor = Color.FromArgb(128, 255, 255);
+            btnGenerarGrafico.ForeColor = Color.Black;
+            btnGenerarGrafico.IconChar = FontAwesome.Sharp.IconChar.PieChart;
+            btnGenerarGrafico.IconColor = Color.Black;
+            btnGenerarGrafico.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnGenerarGrafico.Location = new Point(1020, 29);
+            btnGenerarGrafico.Name = "btnGenerarGrafico";
+            btnGenerarGrafico.Size = new Size(180, 54);
+            btnGenerarGrafico.TabIndex = 104;
+            btnGenerarGrafico.Text = "Ver Estados de Ordenes";
+            btnGenerarGrafico.TextImageRelation = TextImageRelation.TextBeforeImage;
+            btnGenerarGrafico.UseVisualStyleBackColor = false;
+            btnGenerarGrafico.Click += btnGenerarGrafico_Click;
+            // 
             // frmReporteOrdenCompra
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1463, 733);
+            Controls.Add(btnGenerarGrafico);
             Controls.Add(btnbuscarpor);
             Controls.Add(btnlimpiarbuscador);
             Controls.Add(txtbusqueda);
@@ -433,5 +451,6 @@
         private DataGridViewTextBoxColumn PrecioEstimado;
         private DataGridViewTextBoxColumn CantidadOrdenada;
         private DataGridViewTextBoxColumn Subtotal;
+        private FontAwesome.Sharp.IconButton btnGenerarGrafico;
     }
 }

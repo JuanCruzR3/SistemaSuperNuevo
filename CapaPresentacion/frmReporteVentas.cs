@@ -1,5 +1,6 @@
 ﻿using CapaEntidad;
 using CapaNegocio;
+using CapaPresentacion.Modales;
 using CapaPresentacion.Utilidades;
 using ClosedXML.Excel;
 using System;
@@ -148,6 +149,12 @@ namespace CapaPresentacion
             rv.SubTotal,
                 });
             }
+        }
+
+        private void btnGraficoTopProductos_Click(object sender, EventArgs e)
+        {
+            frmGraficoTopProductosVendidos frm = new frmGraficoTopProductosVendidos();
+            frm.ShowDialog(); // Modal
         }
 
     }

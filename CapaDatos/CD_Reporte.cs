@@ -3,14 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CapaDatos
 {
     public class CD_Reporte
     {
+        // ==========================================================
+        // REPORTE COMPRAS
+        // ==========================================================
         public List<ReporteCompra> Compra(string fechainicio, string fechafin, int idproveedor)
         {
             List<ReporteCompra> lista = new List<ReporteCompra>();
@@ -19,7 +19,6 @@ namespace CapaDatos
             {
                 try
                 {
-                    StringBuilder query = new StringBuilder();
                     SqlCommand cmd = new SqlCommand("sp_ReporteCompras", oconexion);
                     cmd.Parameters.AddWithValue("@fechainicio", fechainicio);
                     cmd.Parameters.AddWithValue("@fechafin", fechafin);
@@ -52,7 +51,7 @@ namespace CapaDatos
                         }
                     }
                 }
-                catch (Exception ex)
+                catch
                 {
                     lista = new List<ReporteCompra>();
                 }
@@ -61,6 +60,9 @@ namespace CapaDatos
             return lista;
         }
 
+        // ==========================================================
+        // REPORTE VENTAS
+        // ==========================================================
         public List<ReporteVenta> Venta(string fechainicio, string fechafin)
         {
             List<ReporteVenta> lista = new List<ReporteVenta>();
@@ -69,7 +71,6 @@ namespace CapaDatos
             {
                 try
                 {
-                    StringBuilder query = new StringBuilder();
                     SqlCommand cmd = new SqlCommand("sp_ReporteVentas", oconexion);
                     cmd.Parameters.AddWithValue("@fechainicio", fechainicio);
                     cmd.Parameters.AddWithValue("@fechafin", fechafin);
@@ -100,7 +101,7 @@ namespace CapaDatos
                         }
                     }
                 }
-                catch (Exception ex)
+                catch
                 {
                     lista = new List<ReporteVenta>();
                 }
@@ -109,14 +110,10 @@ namespace CapaDatos
             return lista;
         }
 
-        // =========================================================================
-        // ✅ NUEVO: REPORTE HISTORIAL ORDEN DE COMPRA
-        // Requiere SP: sp_ReporteOrdenCompra(@fechainicio,@fechafin,@idproveedor)
-        // Devuelve columnas con estos nombres:
-        // FechaRegistro, NumeroDocumento, Estado, MontoTotalEstimado, UsuarioRegistro,
-        // DocumentoProveedor, RazonSocial, CodigoProducto, NombreProducto, Categoria,
-        // PrecioEstimado, CantidadOrdenada, SubTotal
-        // =========================================================================
+        // ==========================================================
+        // HISTORIAL ÓRDENES DE COMPRA
+        // SP: sp_ReporteOrdenCompra
+        // ==========================================================
         public List<ReporteOrdenCompra> OrdenCompra(string fechainicio, string fechafin, int idproveedor)
         {
             List<ReporteOrdenCompra> lista = new List<ReporteOrdenCompra>();
@@ -156,7 +153,7 @@ namespace CapaDatos
                         }
                     }
                 }
-                catch (Exception ex)
+                catch
                 {
                     lista = new List<ReporteOrdenCompra>();
                 }
@@ -164,5 +161,89 @@ namespace CapaDatos
 
             return lista;
         }
+
+        // ==========================================================
+        // ✅ NUEVO: ÓRDENES DE COMPRA POR ESTADO (para gráfico torta)
+        // SP: sp_ReporteOrdenesCompraPorEstado
+        // Devuelve: Estado, Total
+        // ==========================================================
+        public List<ReporteOrdenCompraEstado> OrdenCompraPorEstado()
+        {
+            List<ReporteOrdenCompraEstado> lista = new List<ReporteOrdenCompraEstado>();
+
+            using (SqlConnection oconexion = new SqlConnection(Conexion.cadena))
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("sp_ReporteOrdenesCompraPorEstado", oconexion);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    oconexion.Open();
+
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            lista.Add(new ReporteOrdenCompraEstado()
+                            {
+                                Estado = dr["Estado"].ToString(),
+                                TotalOrdenes = Convert.ToInt32(dr["TotalOrdenes"])
+                            });
+                        }
+                    }
+                }
+                catch
+                {
+                    lista = new List<ReporteOrdenCompraEstado>();
+                }
+            }
+
+            return lista;
+        }
+
+        public List<ReporteTopProductosVendido> TopProductosVendidos(
+    string fechainicio,
+    string fechafin,
+    int top)
+        {
+            List<ReporteTopProductosVendido> lista = new List<ReporteTopProductosVendido>();
+
+            using (SqlConnection oconexion = new SqlConnection(Conexion.cadena))
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("sp_ReporteTopProductosVendidos", oconexion);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@fechainicio", fechainicio);
+                    cmd.Parameters.AddWithValue("@fechafin", fechafin);
+                    cmd.Parameters.AddWithValue("@top", top);
+
+                    oconexion.Open();
+
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            lista.Add(new ReporteTopProductosVendido()
+                            {
+                                CodigoProducto = dr["CodigoProducto"].ToString(),
+                                NombreProducto = dr["NombreProducto"].ToString(),
+                                CantidadVendida = Convert.ToInt32(dr["CantidadVendida"])
+                            });
+                        }
+                    }
+                }
+                catch
+                {
+                    lista = new List<ReporteTopProductosVendido>();
+                }
+            }
+
+            return lista;
+        }
+
+
+
     }
 }
