@@ -212,7 +212,6 @@ namespace CapaDatos
             }
         }
 
-        // NUEVO: Verificar si el rol está asignado a algún usuario
         public bool VerificarUsoPorUsuarios(int idRol)
         {
             bool enUso = false;

@@ -1,8 +1,9 @@
-﻿using System;
+﻿using CapaEntidad;
+using CapaNegocio;
+using CapaPresentacion.Modales;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using CapaEntidad;
-using CapaNegocio;
 
 namespace CapaPresentacion
 {
@@ -238,6 +239,16 @@ namespace CapaPresentacion
         private void btnregresar_Click(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        private void btngruposusuarios_Click(object sender, EventArgs e)
+        {
+            // Abrir el formulario de grupos por usuario
+            frmGruposUsuario frm = new frmGruposUsuario();
+            frm.Show();
+
+            // Cerrar el formulario actual
+            this.Close();
         }
     }
 }

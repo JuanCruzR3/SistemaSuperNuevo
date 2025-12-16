@@ -44,7 +44,7 @@ namespace CapaNegocio
             return objcd_rol.ActualizarPermisosDeRol(idRol, idPermisos);
         }
 
-        // NUEVO: Verificar si un rol está asignado a algún usuario
+        //  Verificar si un rol está asignado a algún usuario
         public bool VerificarUsoPorUsuarios(int idRol)
         {
             return objcd_rol.VerificarUsoPorUsuarios(idRol);

@@ -10,9 +10,6 @@ namespace CapaDatos
 {
     public class CD_OrdenCompra
     {
-        // --------------------------------------------------------------------------------
-        // 1. REGISTRAR ORDEN DE COMPRA
-        // --------------------------------------------------------------------------------
         public int Registrar(Orden_Compra obj, DataTable DetalleOrdenCompra, out string Mensaje)
         {
             int idOrdenCompraGenerada = 0;
@@ -51,9 +48,7 @@ namespace CapaDatos
             return idOrdenCompraGenerada;
         }
 
-        // --------------------------------------------------------------------------------
-        // 2. LISTAR ÓRDENES PENDIENTES
-        // --------------------------------------------------------------------------------
+
         public List<Orden_Compra> ListarOrdenesPendientes()
         {
             List<Orden_Compra> lista = new List<Orden_Compra>();
@@ -109,9 +104,7 @@ namespace CapaDatos
             return lista;
         }
 
-        // --------------------------------------------------------------------------------
-        // 3. OBTENER DETALLE DE ORDEN
-        // --------------------------------------------------------------------------------
+
         public List<Detalle_Orden_Compra> ObtenerDetalleOrdenCompra(int idOrdenCompra)
         {
             List<Detalle_Orden_Compra> oLista = new List<Detalle_Orden_Compra>();
@@ -161,9 +154,7 @@ namespace CapaDatos
             return oLista;
         }
 
-        // --------------------------------------------------------------------------------
-        // 4. OBTENER ORDEN COMPLETA PARA EDICIÓN
-        // --------------------------------------------------------------------------------
+
         public Orden_Compra ObtenerOrdenParaEdicion(int idOrdenCompra)
         {
             Orden_Compra oc = null;
@@ -209,9 +200,7 @@ namespace CapaDatos
             return oc ?? new Orden_Compra();
         }
 
-        // --------------------------------------------------------------------------------
-        // 5. ACTUALIZAR ORDEN DE COMPRA (EDICIÓN)
-        // --------------------------------------------------------------------------------
+
         public bool ActualizarOrdenCompra(int idOrdenCompra, int idProveedor, decimal montoTotalEstimado,
             DataTable detalleOrdenCompra, int idUsuario, out string mensaje)
         {
@@ -249,9 +238,6 @@ namespace CapaDatos
             return respuesta;
         }
 
-        // --------------------------------------------------------------------------------
-        // 6. ANULAR ORDEN DE COMPRA
-        // --------------------------------------------------------------------------------
         public bool Anular(int idOrdenCompra, int idUsuario, out string Mensaje)
         {
             bool respuesta = false;
@@ -285,9 +271,6 @@ namespace CapaDatos
             return respuesta;
         }
 
-        // --------------------------------------------------------------------------------
-        // 7. VALIDAR SI SE PUEDE EDITAR
-        // --------------------------------------------------------------------------------
         public bool PuedeEditar(int idOrdenCompra, out string mensaje)
         {
             mensaje = "";
@@ -323,9 +306,6 @@ namespace CapaDatos
             }
         }
 
-        // --------------------------------------------------------------------------------
-        // CORRELATIVO
-        // --------------------------------------------------------------------------------
         public int ObtenerCorrelativo()
         {
             int idcorrelativo = 0;
@@ -354,10 +334,6 @@ namespace CapaDatos
 
             return idcorrelativo;
         }
-
-        // --------------------------------------------------------------------------------
-        // 8. 🆕 OBTENER ORDEN POR NÚMERO (DETALLE ORDEN COMPRA)
-        // --------------------------------------------------------------------------------
         public Orden_Compra ObtenerOrdenCompraPorNumero(string numeroDocumento)
         {
             Orden_Compra oc = new Orden_Compra();
@@ -393,7 +369,7 @@ namespace CapaDatos
                         oc.FechaRegistro = dr["FechaRegistro"].ToString();
                         oc.MontoTotalEstimado = Convert.ToDecimal(dr["MontoTotalEstimado"]);
 
-                        oc.Estado = dr["Estado"].ToString(); // ✅ NUEVO
+                        oc.Estado = dr["Estado"].ToString(); 
 
                         oc.oUsuario = new Usuario { NombreCompleto = dr["NombreCompleto"].ToString() };
                         oc.oProveedor = new Proveedor

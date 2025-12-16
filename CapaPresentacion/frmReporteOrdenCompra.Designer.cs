@@ -376,7 +376,7 @@
             // 
             // btnGenerarGrafico
             // 
-            btnGenerarGrafico.BackColor = Color.FromArgb(128, 255, 255);
+            btnGenerarGrafico.BackColor = Color.Cyan;
             btnGenerarGrafico.ForeColor = Color.Black;
             btnGenerarGrafico.IconChar = FontAwesome.Sharp.IconChar.PieChart;
             btnGenerarGrafico.IconColor = Color.Black;

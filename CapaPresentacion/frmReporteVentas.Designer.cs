@@ -326,7 +326,7 @@
             label10.Location = new Point(14, 12);
             label10.Name = "label10";
             label10.Padding = new Padding(2, 0, 0, 0);
-            label10.Size = new Size(1344, 92);
+            label10.Size = new Size(1371, 92);
             label10.TabIndex = 89;
             label10.Text = "Reporte Ventas";
             // 
@@ -353,15 +353,17 @@
             // 
             // btnGraficoTopProductos
             // 
-            btnGraficoTopProductos.IconChar = FontAwesome.Sharp.IconChar.None;
+            btnGraficoTopProductos.BackColor = Color.Cyan;
+            btnGraficoTopProductos.IconChar = FontAwesome.Sharp.IconChar.MoneyBillTrendUp;
             btnGraficoTopProductos.IconColor = Color.Black;
             btnGraficoTopProductos.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnGraficoTopProductos.Location = new Point(856, 23);
+            btnGraficoTopProductos.Location = new Point(831, 26);
             btnGraficoTopProductos.Name = "btnGraficoTopProductos";
-            btnGraficoTopProductos.Size = new Size(135, 62);
+            btnGraficoTopProductos.Size = new Size(162, 62);
             btnGraficoTopProductos.TabIndex = 105;
-            btnGraficoTopProductos.Text = "Generar Gráfica";
-            btnGraficoTopProductos.UseVisualStyleBackColor = true;
+            btnGraficoTopProductos.Text = "Ver Productos Más Vendidos";
+            btnGraficoTopProductos.TextImageRelation = TextImageRelation.TextBeforeImage;
+            btnGraficoTopProductos.UseVisualStyleBackColor = false;
             btnGraficoTopProductos.Click += btnGraficoTopProductos_Click;
             // 
             // frmReporteVentas

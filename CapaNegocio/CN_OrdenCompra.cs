@@ -60,7 +60,6 @@ namespace CapaNegocio
                 detalleOrdenCompra, idUsuario, out mensaje);
         }
 
-        // 🆕 NUEVO — DETALLE ORDEN COMPRA
         public Orden_Compra ObtenerOrdenCompraPorNumero(string numeroDocumento)
         {
             return objcd_ordenCompra.ObtenerOrdenCompraPorNumero(numeroDocumento);

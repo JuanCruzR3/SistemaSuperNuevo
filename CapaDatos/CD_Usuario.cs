@@ -20,14 +20,28 @@ namespace CapaDatos
                 try
                 {
                     StringBuilder query = new StringBuilder();
-                    query.AppendLine("select u.IdUsuario,u.Documento,u.NombreCompleto,u.Correo,u.Clave,u.Estado,r.IdRol,r.Descripcion from Usuario u");
-                    query.AppendLine("inner join ROL r on r.IdRol = u.IdRol");
 
+                    query.AppendLine("SELECT");
+                    query.AppendLine("    u.IdUsuario,");
+                    query.AppendLine("    u.Documento,");
+                    query.AppendLine("    u.NombreCompleto,");
+                    query.AppendLine("    u.Correo,");
+                    query.AppendLine("    u.Clave,");
+                    query.AppendLine("    u.Estado,");
+                    query.AppendLine("    r.IdRol,");
+                    query.AppendLine("    Roles = ISNULL(STRING_AGG(r2.Descripcion, ' / '), r.Descripcion)");
+                    query.AppendLine("FROM USUARIO u");
+                    query.AppendLine("INNER JOIN ROL r ON r.IdRol = u.IdRol");                 
+                    query.AppendLine("LEFT JOIN USUARIO_ROL ur ON ur.IdUsuario = u.IdUsuario");
+                    query.AppendLine("LEFT JOIN ROL r2 ON r2.IdRol = ur.IdRol");               
+                    query.AppendLine("GROUP BY");
+                    query.AppendLine("    u.IdUsuario, u.Documento, u.NombreCompleto, u.Correo, u.Clave, u.Estado,");
+                    query.AppendLine("    r.IdRol, r.Descripcion");
 
-                    SqlCommand cmd = new SqlCommand(query.ToString(), oconexion); 
-                    cmd.CommandType = CommandType.Text; 
+                    SqlCommand cmd = new SqlCommand(query.ToString(), oconexion);
+                    cmd.CommandType = CommandType.Text;
 
-                    oconexion.Open(); 
+                    oconexion.Open();
 
                     using (SqlDataReader dr = cmd.ExecuteReader())
                     {
@@ -37,24 +51,28 @@ namespace CapaDatos
                             {
                                 IdUsuario = Convert.ToInt32(dr["IdUsuario"]),
                                 Documento = dr["Documento"].ToString(),
-                                NombreCompleto = dr["NombreCompleto"].ToString(), 
-                                Correo = dr["Correo"].ToString(), 
-                                Clave = dr["Clave"].ToString(), 
+                                NombreCompleto = dr["NombreCompleto"].ToString(),
+                                Correo = dr["Correo"].ToString(),
+                                Clave = dr["Clave"].ToString(),
                                 Estado = Convert.ToBoolean(dr["Estado"]),
-                                oRol = new Rol() { IdRol = Convert.ToInt32(dr["IdRol"]), Descripcion = dr["Descripcion"].ToString() } 
-                            });  
+                                oRol = new Rol()
+                                {
+                                    IdRol = Convert.ToInt32(dr["IdRol"]),
+                                    Descripcion = dr["Roles"].ToString()
+                                }
+                            });
                         }
                     }
-
-                } 
-                catch (Exception ex)
+                }
+                catch
                 {
-                    lista = new List<Usuario>(); 
-                } 
+                    lista = new List<Usuario>();
+                }
             }
 
-            return lista; 
+            return lista;
         }
+
 
 
 
@@ -185,7 +203,7 @@ namespace CapaDatos
                 }
                 catch (Exception ex)
                 {
-                    // Manejo de error (si es necesario)
+                   
                     throw new Exception("Error al obtener el correo: " + ex.Message);
                 }
             }
@@ -208,7 +226,7 @@ namespace CapaDatos
                 }
                 catch (Exception ex)
                 {
-                    // Manejo de error (si es necesario)
+                    
                     throw new Exception("Error al actualizar la clave: " + ex.Message);
                 }
             }

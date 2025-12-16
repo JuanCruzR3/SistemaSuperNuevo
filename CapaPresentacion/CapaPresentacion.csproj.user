@@ -67,6 +67,9 @@
     <Compile Update="Modales\frmGraficoTopProductosVendidos.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Modales\frmGruposUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Modales\mdAcercade.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -38,7 +38,6 @@ namespace CapaDatos
             return idcorrelativo; 
         }
 
-        // --- REEMPLAZAR MÉTODO Registrar en CapaDatos/CD_Compra.cs ---
 
         public bool Registrar(Compra obj, DataTable DetalleCompra, out string Mensaje)
         {
@@ -52,19 +51,11 @@ namespace CapaDatos
                     SqlCommand cmd = new SqlCommand("sp_RegistrarCompra", oconexion);
                     cmd.Parameters.AddWithValue("IdUsuario", obj.oUsuario.IdUsuario);
                     cmd.Parameters.AddWithValue("IdProveedor", obj.oProveedor.IdProveedor);
-
-                    // --- AÑADIR NUEVO PARÁMETRO PARA LA ORDEN DE COMPRA ---
-                    // Si obj.IdOrdenCompra es 0, el SP lo tratará como NULL y la recepción será directa.
                     cmd.Parameters.AddWithValue("IdOrdenCompra", obj.IdOrdenCompra);
-                    // -----------------------------------------------------
-
                     cmd.Parameters.AddWithValue("TipoDocumento", obj.TipoDocumento);
                     cmd.Parameters.AddWithValue("NumeroDocumento", obj.NumeroDocumento);
                     cmd.Parameters.AddWithValue("MontoTotal", obj.MontoTotal);
-
-                    // Este DataTable ahora debe contener el campo IdDetalleOrdenCompra
                     cmd.Parameters.AddWithValue("DetalleCompra", DetalleCompra);
-
                     cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
                     cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
                     cmd.CommandType = CommandType.StoredProcedure;

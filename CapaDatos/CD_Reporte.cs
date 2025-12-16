@@ -8,9 +8,6 @@ namespace CapaDatos
 {
     public class CD_Reporte
     {
-        // ==========================================================
-        // REPORTE COMPRAS
-        // ==========================================================
         public List<ReporteCompra> Compra(string fechainicio, string fechafin, int idproveedor)
         {
             List<ReporteCompra> lista = new List<ReporteCompra>();
@@ -60,9 +57,6 @@ namespace CapaDatos
             return lista;
         }
 
-        // ==========================================================
-        // REPORTE VENTAS
-        // ==========================================================
         public List<ReporteVenta> Venta(string fechainicio, string fechafin)
         {
             List<ReporteVenta> lista = new List<ReporteVenta>();
@@ -110,10 +104,6 @@ namespace CapaDatos
             return lista;
         }
 
-        // ==========================================================
-        // HISTORIAL ÓRDENES DE COMPRA
-        // SP: sp_ReporteOrdenCompra
-        // ==========================================================
         public List<ReporteOrdenCompra> OrdenCompra(string fechainicio, string fechafin, int idproveedor)
         {
             List<ReporteOrdenCompra> lista = new List<ReporteOrdenCompra>();
@@ -162,11 +152,6 @@ namespace CapaDatos
             return lista;
         }
 
-        // ==========================================================
-        // ✅ NUEVO: ÓRDENES DE COMPRA POR ESTADO (para gráfico torta)
-        // SP: sp_ReporteOrdenesCompraPorEstado
-        // Devuelve: Estado, Total
-        // ==========================================================
         public List<ReporteOrdenCompraEstado> OrdenCompraPorEstado()
         {
             List<ReporteOrdenCompraEstado> lista = new List<ReporteOrdenCompraEstado>();

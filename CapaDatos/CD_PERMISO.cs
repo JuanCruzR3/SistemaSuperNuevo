@@ -1,9 +1,8 @@
 ﻿using CapaEntidad;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Data;
-using System.Text;
+using System.Data.SqlClient;
 
 namespace CapaDatos
 {
@@ -17,15 +16,23 @@ namespace CapaDatos
             {
                 try
                 {
-                    // Lee permisos del rol del usuario usando la tabla de relación
-                    // Consulta correcta para CD_Permiso.cs Listar(int idusuario):
                     string query = @"
-    SELECT p.IdPermiso, p.NombreMenu
-    FROM USUARIO u
-    INNER JOIN ROL r ON r.IdRol = u.IdRol
-    INNER JOIN RelacionPermisoRol rr ON rr.IdRol = r.IdRol  -- Usa la nueva tabla
-    INNER JOIN PERMISO p ON p.IdPermiso = rr.IdPermiso
-    WHERE u.IdUsuario = @idusuario";
+                        SELECT DISTINCT p.IdPermiso, p.NombreMenu
+                        FROM PERMISO p
+                        INNER JOIN RelacionPermisoRol rr ON rr.IdPermiso = p.IdPermiso
+                        INNER JOIN (
+                            SELECT ur.IdRol
+                            FROM USUARIO_ROL ur
+                            WHERE ur.IdUsuario = @idusuario
+
+                            UNION
+
+                            SELECT u.IdRol
+                            FROM USUARIO u
+                            WHERE u.IdUsuario = @idusuario AND u.IdRol IS NOT NULL
+                        ) roles ON roles.IdRol = rr.IdRol
+                        ORDER BY p.NombreMenu;
+                    ";
 
                     using (SqlCommand cmd = new SqlCommand(query, oconexion))
                     {
@@ -58,24 +65,32 @@ namespace CapaDatos
         public List<Permiso> ListarTodos()
         {
             List<Permiso> lista = new List<Permiso>();
+
             using (SqlConnection oconexion = new SqlConnection(Conexion.cadena))
             {
                 try
                 {
-                    string query = "SELECT IdPermiso, NombreMenu FROM PERMISO";
-                    SqlCommand cmd = new SqlCommand(query, oconexion);
-                    cmd.CommandType = CommandType.Text;
+                    string query = @"
+                SELECT MIN(IdPermiso) AS IdPermiso, NombreMenu
+                FROM PERMISO
+                GROUP BY NombreMenu
+                ORDER BY NombreMenu";
 
-                    oconexion.Open();
-                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    using (SqlCommand cmd = new SqlCommand(query, oconexion))
                     {
-                        while (dr.Read())
+                        cmd.CommandType = CommandType.Text;
+
+                        oconexion.Open();
+                        using (SqlDataReader dr = cmd.ExecuteReader())
                         {
-                            lista.Add(new Permiso()
+                            while (dr.Read())
                             {
-                                IdPermiso = Convert.ToInt32(dr["IdPermiso"]),
-                                NombreMenu = dr["NombreMenu"].ToString()
-                            });
+                                lista.Add(new Permiso()
+                                {
+                                    IdPermiso = Convert.ToInt32(dr["IdPermiso"]),
+                                    NombreMenu = dr["NombreMenu"].ToString()
+                                });
+                            }
                         }
                     }
                 }
@@ -84,7 +99,9 @@ namespace CapaDatos
                     lista = new List<Permiso>();
                 }
             }
+
             return lista;
         }
+
     }
 }

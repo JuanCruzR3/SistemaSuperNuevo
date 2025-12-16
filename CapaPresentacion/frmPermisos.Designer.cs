@@ -37,6 +37,7 @@
             btncancelar = new FontAwesome.Sharp.IconButton();
             label1 = new Label();
             btnregresar = new FontAwesome.Sharp.IconButton();
+            btngruposusuarios = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)dgvPermisos).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvGrupos).BeginInit();
             SuspendLayout();
@@ -45,18 +46,20 @@
             // 
             dgvPermisos.BackgroundColor = SystemColors.Control;
             dgvPermisos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvPermisos.Location = new Point(356, 22);
+            dgvPermisos.Location = new Point(285, 18);
+            dgvPermisos.Margin = new Padding(2, 2, 2, 2);
             dgvPermisos.Name = "dgvPermisos";
             dgvPermisos.RowHeadersWidth = 62;
             dgvPermisos.RowTemplate.Height = 33;
-            dgvPermisos.Size = new Size(370, 407);
+            dgvPermisos.Size = new Size(296, 326);
             dgvPermisos.TabIndex = 0;
             // 
             // txtDescripcionRol
             // 
-            txtDescripcionRol.Location = new Point(75, 60);
+            txtDescripcionRol.Location = new Point(60, 48);
+            txtDescripcionRol.Margin = new Padding(2, 2, 2, 2);
             txtDescripcionRol.Name = "txtDescripcionRol";
-            txtDescripcionRol.Size = new Size(261, 31);
+            txtDescripcionRol.Size = new Size(210, 27);
             txtDescripcionRol.TabIndex = 1;
             // 
             // btneliminar
@@ -70,10 +73,10 @@
             btneliminar.IconColor = Color.White;
             btneliminar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btneliminar.IconSize = 16;
-            btneliminar.Location = new Point(75, 231);
-            btneliminar.Margin = new Padding(4, 5, 4, 5);
+            btneliminar.Location = new Point(60, 185);
+            btneliminar.Margin = new Padding(3, 4, 3, 4);
             btneliminar.Name = "btneliminar";
-            btneliminar.Size = new Size(261, 38);
+            btneliminar.Size = new Size(209, 30);
             btneliminar.TabIndex = 20;
             btneliminar.Text = "Eliminar";
             btneliminar.TextAlign = ContentAlignment.MiddleRight;
@@ -92,10 +95,10 @@
             btnmodificar.IconColor = Color.White;
             btnmodificar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnmodificar.IconSize = 18;
-            btnmodificar.Location = new Point(75, 183);
-            btnmodificar.Margin = new Padding(4, 5, 4, 5);
+            btnmodificar.Location = new Point(60, 146);
+            btnmodificar.Margin = new Padding(3, 4, 3, 4);
             btnmodificar.Name = "btnmodificar";
-            btnmodificar.Size = new Size(261, 38);
+            btnmodificar.Size = new Size(209, 30);
             btnmodificar.TabIndex = 19;
             btnmodificar.Text = "Modificar";
             btnmodificar.TextAlign = ContentAlignment.MiddleRight;
@@ -114,10 +117,10 @@
             btnguardar.IconColor = Color.White;
             btnguardar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnguardar.IconSize = 16;
-            btnguardar.Location = new Point(75, 135);
-            btnguardar.Margin = new Padding(4, 5, 4, 5);
+            btnguardar.Location = new Point(60, 108);
+            btnguardar.Margin = new Padding(3, 4, 3, 4);
             btnguardar.Name = "btnguardar";
-            btnguardar.Size = new Size(261, 38);
+            btnguardar.Size = new Size(209, 30);
             btnguardar.TabIndex = 18;
             btnguardar.Text = "Guardar";
             btnguardar.TextAlign = ContentAlignment.MiddleRight;
@@ -129,11 +132,12 @@
             // 
             dgvGrupos.BackgroundColor = SystemColors.Control;
             dgvGrupos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvGrupos.Location = new Point(756, 22);
+            dgvGrupos.Location = new Point(605, 18);
+            dgvGrupos.Margin = new Padding(2, 2, 2, 2);
             dgvGrupos.Name = "dgvGrupos";
             dgvGrupos.RowHeadersWidth = 62;
             dgvGrupos.RowTemplate.Height = 33;
-            dgvGrupos.Size = new Size(318, 407);
+            dgvGrupos.Size = new Size(254, 326);
             dgvGrupos.TabIndex = 21;
             dgvGrupos.CellContentClick += dgvGrupos_CellClick;
             // 
@@ -148,10 +152,10 @@
             btncancelar.IconColor = Color.White;
             btncancelar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btncancelar.IconSize = 16;
-            btncancelar.Location = new Point(75, 279);
-            btncancelar.Margin = new Padding(4, 5, 4, 5);
+            btncancelar.Location = new Point(60, 223);
+            btncancelar.Margin = new Padding(3, 4, 3, 4);
             btncancelar.Name = "btncancelar";
-            btncancelar.Size = new Size(261, 38);
+            btncancelar.Size = new Size(209, 30);
             btncancelar.TabIndex = 22;
             btncancelar.Text = "Cancelar Selección";
             btncancelar.TextAlign = ContentAlignment.MiddleRight;
@@ -162,9 +166,10 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(79, 22);
+            label1.Location = new Point(63, 18);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(165, 25);
+            label1.Size = new Size(136, 20);
             label1.TabIndex = 23;
             label1.Text = "Nombre del grupo:";
             // 
@@ -179,10 +184,10 @@
             btnregresar.IconColor = Color.White;
             btnregresar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnregresar.IconSize = 16;
-            btnregresar.Location = new Point(610, 446);
-            btnregresar.Margin = new Padding(4, 5, 4, 5);
+            btnregresar.Location = new Point(488, 357);
+            btnregresar.Margin = new Padding(3, 4, 3, 4);
             btnregresar.Name = "btnregresar";
-            btnregresar.Size = new Size(261, 38);
+            btnregresar.Size = new Size(209, 30);
             btnregresar.TabIndex = 24;
             btnregresar.Text = "Regresar";
             btnregresar.TextAlign = ContentAlignment.MiddleRight;
@@ -190,11 +195,34 @@
             btnregresar.UseVisualStyleBackColor = false;
             btnregresar.Click += btnregresar_Click;
             // 
+            // btngruposusuarios
+            // 
+            btngruposusuarios.BackColor = Color.DarkKhaki;
+            btngruposusuarios.Cursor = Cursors.Hand;
+            btngruposusuarios.FlatAppearance.BorderColor = Color.Black;
+            btngruposusuarios.FlatStyle = FlatStyle.Flat;
+            btngruposusuarios.ForeColor = Color.Black;
+            btngruposusuarios.IconChar = FontAwesome.Sharp.IconChar.Users;
+            btngruposusuarios.IconColor = Color.Black;
+            btngruposusuarios.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btngruposusuarios.IconSize = 16;
+            btngruposusuarios.Location = new Point(60, 304);
+            btngruposusuarios.Margin = new Padding(3, 4, 3, 4);
+            btngruposusuarios.Name = "btngruposusuarios";
+            btngruposusuarios.Size = new Size(209, 30);
+            btngruposusuarios.TabIndex = 29;
+            btngruposusuarios.Text = "Usuarios Especiales";
+            btngruposusuarios.TextAlign = ContentAlignment.MiddleRight;
+            btngruposusuarios.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btngruposusuarios.UseVisualStyleBackColor = false;
+            btngruposusuarios.Click += btngruposusuarios_Click;
+            // 
             // frmPermisos
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1096, 498);
+            ClientSize = new Size(877, 398);
+            Controls.Add(btngruposusuarios);
             Controls.Add(btnregresar);
             Controls.Add(label1);
             Controls.Add(btncancelar);
@@ -204,6 +232,7 @@
             Controls.Add(btnguardar);
             Controls.Add(txtDescripcionRol);
             Controls.Add(dgvPermisos);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "frmPermisos";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmPermisos";
@@ -225,5 +254,6 @@
         private FontAwesome.Sharp.IconButton btncancelar;
         private Label label1;
         private FontAwesome.Sharp.IconButton btnregresar;
+        private FontAwesome.Sharp.IconButton btngruposusuarios;
     }
 }
