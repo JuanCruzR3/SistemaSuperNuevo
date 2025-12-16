@@ -426,5 +426,13 @@ namespace CapaPresentacion
             txtcambio.Text = "";
             dgvdata.Rows.Clear();
         }
+
+        private void btnAnularVenta_Click(object sender, EventArgs e)
+        {
+            using (var frm = new CapaPresentacion.Modales.frmAnularVenta())
+            {
+                frm.ShowDialog();
+            }
+        }
     }
 }

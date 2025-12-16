@@ -1,11 +1,7 @@
 ﻿using CapaDatos;
 using CapaEntidad;
-using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CapaNegocio
 {
@@ -15,14 +11,13 @@ namespace CapaNegocio
 
         public bool RestarStock(int idproducto, int cantidad)
         {
-            return objcd_venta.RestarStock(idproducto, cantidad); 
+            return objcd_venta.RestarStock(idproducto, cantidad);
         }
 
         public bool SumarStock(int idproducto, int cantidad)
         {
-            return objcd_venta.SumarStock(idproducto, cantidad); 
+            return objcd_venta.SumarStock(idproducto, cantidad);
         }
-
 
         public int ObtenerCorrelativo()
         {
@@ -36,14 +31,26 @@ namespace CapaNegocio
 
         public Venta ObtenerVenta(string numero)
         {
-            Venta oVenta = objcd_venta.ObtenerVenta(numero); 
+            Venta oVenta = objcd_venta.ObtenerVenta(numero);
 
-            if(oVenta.IdVenta != 0)
+            if (oVenta.IdVenta != 0)
             {
                 List<Detalle_Venta> oDetalleVenta = objcd_venta.ObtenerDetalleVenta(oVenta.IdVenta);
-                oVenta.oDetalle_Venta = oDetalleVenta; 
+                oVenta.oDetalle_Venta = oDetalleVenta;
             }
             return oVenta;
+        }
+
+        // ✅ Listar para anular
+        public List<Venta> ListarParaAnular()
+        {
+            return objcd_venta.ListarParaAnular();
+        }
+
+        // ✅ Anular
+        public bool Anular(int idVenta)
+        {
+            return objcd_venta.AnularVenta(idVenta);
         }
     }
 }

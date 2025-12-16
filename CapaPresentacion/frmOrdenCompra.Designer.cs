@@ -47,9 +47,9 @@
             label3 = new Label();
             txtNumeroDocumento = new TextBox();
             label4 = new Label();
-            label5 = new Label();
             label6 = new Label();
             btnVerPendientes = new FontAwesome.Sharp.IconButton();
+            label5 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvDetalleOC).BeginInit();
             SuspendLayout();
             // 
@@ -195,6 +195,7 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.ForeColor = Color.White;
             label1.Location = new Point(101, 180);
             label1.Name = "label1";
             label1.Size = new Size(140, 20);
@@ -204,6 +205,7 @@
             // label2
             // 
             label2.AutoSize = true;
+            label2.ForeColor = Color.White;
             label2.Location = new Point(104, 32);
             label2.Name = "label2";
             label2.Size = new Size(80, 20);
@@ -213,7 +215,8 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(112, 114);
+            label3.ForeColor = Color.White;
+            label3.Location = new Point(104, 114);
             label3.Name = "label3";
             label3.Size = new Size(72, 20);
             label3.TabIndex = 80;
@@ -229,24 +232,17 @@
             // label4
             // 
             label4.AutoSize = true;
+            label4.BackColor = Color.White;
             label4.Location = new Point(1071, 15);
             label4.Name = "label4";
             label4.Size = new Size(130, 20);
             label4.TabIndex = 81;
             label4.Text = "Número de orden:";
             // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(330, 185);
-            label5.Name = "label5";
-            label5.Size = new Size(53, 20);
-            label5.TabIndex = 82;
-            label5.Text = "Precio:";
-            // 
             // label6
             // 
             label6.AutoSize = true;
+            label6.ForeColor = Color.White;
             label6.Location = new Point(1198, 419);
             label6.Name = "label6";
             label6.Size = new Size(115, 20);
@@ -266,14 +262,24 @@
             btnVerPendientes.UseVisualStyleBackColor = true;
             btnVerPendientes.Click += btnVerPendientes_Click;
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.ForeColor = Color.White;
+            label5.Location = new Point(330, 185);
+            label5.Name = "label5";
+            label5.Size = new Size(53, 20);
+            label5.TabIndex = 85;
+            label5.Text = "Precio:";
+            // 
             // frmOrdenCompra
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1427, 642);
+            Controls.Add(label5);
             Controls.Add(btnVerPendientes);
             Controls.Add(label6);
-            Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
@@ -321,8 +327,8 @@
         private Label label3;
         private TextBox txtNumeroDocumento;
         private Label label4;
-        private Label label5;
         private Label label6;
         private FontAwesome.Sharp.IconButton btnVerPendientes;
+        private Label label5;
     }
 }

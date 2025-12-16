@@ -19,6 +19,7 @@ namespace CapaEntidad
         public decimal MontoTotal { get; set; }
         public List<Detalle_Venta> oDetalle_Venta { get; set; } 
         public string FechaRegistro { get; set; }
+        public string Estado { get; set; }
 
     }
 }

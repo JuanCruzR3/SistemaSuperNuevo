@@ -1,11 +1,7 @@
 ﻿using CapaDatos;
 using CapaEntidad;
-using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CapaNegocio
 {
@@ -26,14 +22,25 @@ namespace CapaNegocio
         public Compra ObtenerCompra(string numero)
         {
             Compra oCompra = objcd_compra.ObtenerCompra(numero);
-            
+
             if (oCompra.IdCompra != 0)
             {
-                List<Detalle_Compra> oDetalleCompra = objcd_compra.ObtenerDetalleCompra(oCompra.IdCompra); 
-                
-                oCompra.oDetalleCompra = oDetalleCompra; 
+                List<Detalle_Compra> oDetalleCompra = objcd_compra.ObtenerDetalleCompra(oCompra.IdCompra);
+                oCompra.oDetalleCompra = oDetalleCompra;
             }
-            return oCompra; 
+            return oCompra;
+        }
+
+        // ✅ Listar para anular
+        public List<Compra> ListarParaAnular()
+        {
+            return objcd_compra.ListarParaAnular();
+        }
+
+        // ✅ Anular
+        public bool Anular(int idCompra, out string mensaje)
+        {
+            return objcd_compra.AnularCompra(idCompra, out mensaje);
         }
     }
 }

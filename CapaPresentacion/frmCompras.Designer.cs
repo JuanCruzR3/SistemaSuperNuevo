@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             label1 = new Label();
             label2 = new Label();
             groupBox1 = new GroupBox();
@@ -81,6 +81,7 @@
             CantidadOrdenadaOC = new DataGridViewTextBoxColumn();
             CantidadRecibidaOC = new DataGridViewTextBoxColumn();
             CantidadPendienteOC = new DataGridViewTextBoxColumn();
+            btnAnularCompra = new FontAwesome.Sharp.IconButton();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -383,15 +384,15 @@
             // 
             dgvdata.AllowUserToAddRows = false;
             dgvdata.BackgroundColor = Color.White;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.Padding = new Padding(2);
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgvdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.Padding = new Padding(2);
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvdata.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvdata.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvdata.Columns.AddRange(new DataGridViewColumn[] { IdDetalleOrdenCompra, IdProducto, Producto, PrecioCompra, PrecioVenta, Cantidad, Subtotal, CantidadPendienteMax, btneliminar });
             dgvdata.Location = new Point(729, 342);
@@ -400,9 +401,9 @@
             dgvdata.Name = "dgvdata";
             dgvdata.ReadOnly = true;
             dgvdata.RowHeadersWidth = 62;
-            dataGridViewCellStyle2.SelectionBackColor = Color.White;
-            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
-            dgvdata.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.SelectionBackColor = Color.White;
+            dataGridViewCellStyle4.SelectionForeColor = Color.Black;
+            dgvdata.RowsDefaultCellStyle = dataGridViewCellStyle4;
             dgvdata.RowTemplate.Height = 28;
             dgvdata.Size = new Size(662, 265);
             dgvdata.TabIndex = 28;
@@ -628,11 +629,24 @@
             CantidadPendienteOC.Name = "CantidadPendienteOC";
             CantidadPendienteOC.Width = 125;
             // 
+            // btnAnularCompra
+            // 
+            btnAnularCompra.IconChar = FontAwesome.Sharp.IconChar.None;
+            btnAnularCompra.IconColor = Color.Black;
+            btnAnularCompra.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnAnularCompra.Location = new Point(295, 25);
+            btnAnularCompra.Name = "btnAnularCompra";
+            btnAnularCompra.Size = new Size(118, 38);
+            btnAnularCompra.TabIndex = 71;
+            btnAnularCompra.Text = "Anular Compra";
+            btnAnularCompra.UseVisualStyleBackColor = true;
+            // 
             // frmCompras
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1420, 675);
+            Controls.Add(btnAnularCompra);
             Controls.Add(dgvpendientesOC);
             Controls.Add(txtcantidadpendientemax);
             Controls.Add(txtidDetalleOrdenCompra);
@@ -718,5 +732,6 @@
         private DataGridViewTextBoxColumn CantidadOrdenadaOC;
         private DataGridViewTextBoxColumn CantidadRecibidaOC;
         private DataGridViewTextBoxColumn CantidadPendienteOC;
+        private FontAwesome.Sharp.IconButton btnAnularCompra;
     }
 }

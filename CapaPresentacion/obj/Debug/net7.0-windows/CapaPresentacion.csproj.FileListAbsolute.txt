@@ -412,3 +412,5 @@ C:\Users\juanc\OneDrive\Desktop\Juan\Sistema Ventas\SistemaVentas\SistemaVentas\
 C:\Users\juanc\OneDrive\Desktop\Juan\Sistema Ventas\SistemaVentas\SistemaVentas\CapaPresentacion\obj\Debug\net7.0-windows\CapaPresentacion.frmGraficoOrdenesCompraEstado.resources
 C:\Users\juanc\OneDrive\Desktop\Juan\Sistema Ventas\SistemaVentas\SistemaVentas\CapaPresentacion\obj\Debug\net7.0-windows\CapaPresentacion.Modales.frmGraficoTopProductosVendidos.resources
 C:\Users\juanc\OneDrive\Desktop\Juan\Sistema Ventas\SistemaVentas\SistemaVentas\CapaPresentacion\obj\Debug\net7.0-windows\CapaPresentacion.Modales.frmGruposUsuario.resources
+C:\Users\juanc\OneDrive\Desktop\Juan\Sistema Ventas\SistemaVentas\SistemaVentas\CapaPresentacion\obj\Debug\net7.0-windows\CapaPresentacion.Modales.frmAnularCompra.resources
+C:\Users\juanc\OneDrive\Desktop\Juan\Sistema Ventas\SistemaVentas\SistemaVentas\CapaPresentacion\obj\Debug\net7.0-windows\CapaPresentacion.Modales.frmAnularVenta.resources
